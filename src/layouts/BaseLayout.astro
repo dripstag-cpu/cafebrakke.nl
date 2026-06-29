@@ -58,16 +58,16 @@ const FAVICON =
 <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-italic-latin.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="/fonts/fraunces-latin.woff2" crossorigin />
 <style is:inline>
-@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 700;font-display:swap;src:url(/fonts/fraunces-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Fraunces';font-style:italic;font-weight:300 700;font-display:swap;src:url(/fonts/fraunces-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Inter';font-style:normal;font-weight:300 600;font-display:swap;src:url(/fonts/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url(/fonts/jetbrainsmono-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-/* Metric-compatibele fallback voor Fraunces (Georgia op exact dezelfde maat geschaald,
-   berekend met fontTools). De fallback-tekst neemt precies dezelfde ruimte in als Fraunces,
-   dus de font-swap verandert de tekstgrootte niet → geen nieuwe (grotere) LCP-paint en geen CLS.
-   Dit haalt de mobiele LCP omlaag: die zat vast op het moment van de swap i.p.v. de eerste paint. */
-@font-face{font-family:'Fraunces Fallback';src:local('Georgia'),local('Times New Roman'),local('Times');size-adjust:137.6%;ascent-override:71.1%;descent-override:18.5%;line-gap-override:0%}
-@font-face{font-family:'Fraunces Fallback';font-style:italic;src:local('Georgia Italic'),local('Times New Roman Italic'),local('Times'),local('Georgia');size-adjust:137.6%;ascent-override:71.1%;descent-override:18.5%;line-gap-override:0%}
+/* font-display:OPTIONAL i.p.v. swap → de browser doet NOOIT een late font-swap. De fonts
+   zijn klein (geïnstanced/gesubset) + Fraunces is gepreload, dus op normale verbindingen
+   staan ze er vóór de eerste paint en wordt het echte font getoond. Mocht een font op een
+   trage verbinding net te laat zijn, dan blijft de fallback staan ZONDER swap → geen reflow,
+   dus geen CLS. (Een eerdere `local('Georgia')` metric-fallback brak op Linux/Android — waar
+   Georgia niet bestaat — en veroorzaakte juist CLS op PageSpeed; daarom helemaal weg.) */
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 700;font-display:optional;src:url(/fonts/fraunces-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:300 700;font-display:optional;src:url(/fonts/fraunces-italic-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300 600;font-display:optional;src:url(/fonts/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:optional;src:url(/fonts/jetbrainsmono-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 </style>
 </head>
 <body>

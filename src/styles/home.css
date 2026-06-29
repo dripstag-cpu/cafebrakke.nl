@@ -62,7 +62,7 @@ body::before{ display:none; }
   pointer-events:auto;
 }
 .post-nav .brand{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:600;
   font-size:18px;
   letter-spacing:-.01em;
@@ -117,7 +117,7 @@ body::before{ display:none; }
 }
 .masthead .left{display:flex;gap:24px;align-items:center}
 .masthead .crest{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-size:18px;
   font-weight:600;
   letter-spacing:-.01em;
@@ -276,7 +276,7 @@ body::before{ display:none; }
   opacity:.5;
 }
 .hero-intro h1{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:300;
   font-size:clamp(72px,14vw,200px);
   line-height:.88;
@@ -296,7 +296,7 @@ body::before{ display:none; }
   font-style:normal;
 }
 .hero-intro .tagline{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-style:italic;
   font-weight:300;
   font-size:clamp(20px,2.4vw,32px);
@@ -425,7 +425,7 @@ body::before{ display:none; }
   color:var(--ink);
 }
 .zoom-section-label h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:300;
   font-size:clamp(28px,4vw,56px);
   line-height:1;
@@ -601,7 +601,7 @@ body::before{ display:none; }
   position:absolute;
   top:50%; left:50%;
   transform:translate(-50%,-50%) scale(.6);
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:600;
   font-size:32vw;
   line-height:.85;
@@ -659,7 +659,7 @@ body::before{ display:none; }
   backdrop-filter:blur(6px);
 }
 .box-caption h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:300;
   font-size:clamp(40px,5.5vw,84px);
   line-height:1;
@@ -687,7 +687,7 @@ body::before{ display:none; }
   color:var(--amber);
 }
 .over-reveal h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:300;
   font-size:clamp(40px,6.5vw,96px);
   line-height:1;
@@ -746,7 +746,7 @@ body::before{ display:none; }
   color:var(--ink);
 }
 .section-1 h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:400;
   font-size:clamp(40px,5.5vw,84px);
   line-height:1;
@@ -760,7 +760,7 @@ body::before{ display:none; }
   font-weight:300;
 }
 .section-1 .col-left .strap{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-style:italic;
   font-size:20px;
   font-weight:300;
@@ -774,7 +774,7 @@ body::before{ display:none; }
 }
 .section-1 .col-right p{margin-bottom:24px}
 .section-1 .col-right p:first-child::first-letter{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:500;
   font-size:5.2em;
   line-height:.8;
@@ -798,7 +798,7 @@ body::before{ display:none; }
 }
 .section-1 .timeline .year{
   display:block;
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-size:28px;
   font-weight:500;
   font-variation-settings:"opsz" 60;
@@ -839,7 +839,7 @@ body::before{ display:none; }
   margin-bottom:32px;
 }
 .section-2 .pullquote{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:300;
   font-size:clamp(36px,4.6vw,68px);
   line-height:1.05;
@@ -897,7 +897,7 @@ body::before{ display:none; }
   margin-right:16px;
 }
 .section-2 .roster .name{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-style:italic;
   font-size:22px;
   font-weight:300;
@@ -917,13 +917,13 @@ body::before{ display:none; }
   color:var(--amber);display:block;margin-bottom:18px;
 }
 .kaart-head h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-weight:400;
+  font-family:'Fraunces',serif;font-weight:400;
   font-size:clamp(40px,5.5vw,84px);line-height:1;letter-spacing:-.02em;
   font-variation-settings:"opsz" 144,"SOFT" 30;color:var(--ink);margin-bottom:18px;
 }
 .kaart-head h2 em{font-style:italic;color:var(--amber);font-weight:300}
 .kaart-head .strap{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-style:italic;font-weight:300;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
   font-size:22px;font-variation-settings:"opsz" 36,"SOFT" 100;
   opacity:.7;color:var(--ink);max-width:32ch;
 }
@@ -931,7 +931,7 @@ body::before{ display:none; }
   display:grid;grid-template-columns:1fr 1fr;gap:6vw;margin-bottom:32px;
 }
 .kaart-col h3{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-weight:500;font-size:24px;
+  font-family:'Fraunces',serif;font-weight:500;font-size:24px;
   margin-bottom:24px;padding-bottom:12px;
   border-bottom:1px solid var(--ink);color:var(--ink);
   font-variation-settings:"opsz" 36;
@@ -981,13 +981,13 @@ body::before{ display:none; }
   text-transform:uppercase;color:var(--amber);display:block;margin-bottom:18px;
 }
 .borrels-head h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-weight:400;
+  font-family:'Fraunces',serif;font-weight:400;
   font-size:clamp(40px,5.5vw,84px);line-height:1;letter-spacing:-.02em;
   font-variation-settings:"opsz" 144,"SOFT" 30;color:var(--ink);margin-bottom:18px;
 }
 .borrels-head h2 em{font-style:italic;color:var(--amber);font-weight:300}
 .borrels-head .strap{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-style:italic;font-weight:300;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
   font-size:22px;font-variation-settings:"opsz" 36,"SOFT" 100;
   opacity:.7;color:var(--ink);
 }
@@ -998,12 +998,12 @@ body::before{ display:none; }
 }
 .borrel-card-head{display:flex;align-items:baseline;gap:18px;margin-bottom:24px}
 .borrel-card-head .num{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-size:56px;font-weight:600;
+  font-family:'Fraunces',serif;font-size:56px;font-weight:600;
   line-height:1;color:var(--amber);
   font-variation-settings:"opsz" 144,"SOFT" 30;
 }
 .borrel-card-head h3{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-weight:500;font-size:28px;
+  font-family:'Fraunces',serif;font-weight:500;font-size:28px;
   color:var(--ink);font-variation-settings:"opsz" 60;
 }
 .borrel-card .price{
@@ -1011,7 +1011,7 @@ body::before{ display:none; }
   margin-bottom:20px;line-height:1.5;
 }
 .borrel-card .price strong{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-size:32px;font-weight:500;
+  font-family:'Fraunces',serif;font-size:32px;font-weight:500;
   color:var(--ink);display:inline;margin-right:4px;
 }
 .borrel-card > p{font-size:15px;color:var(--ink);opacity:.8;margin-bottom:20px}
@@ -1022,7 +1022,7 @@ body::before{ display:none; }
 }
 .borrels-foot{text-align:center}
 .borrels-foot p{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-style:italic;font-size:20px;
+  font-family:'Fraunces',serif;font-style:italic;font-size:20px;
   color:var(--ink);margin-bottom:24px;font-variation-settings:"opsz" 36,"SOFT" 100;
 }
 .borrels-cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -1066,13 +1066,13 @@ body::before{ display:none; }
   text-transform:uppercase;color:var(--amber);display:block;margin-bottom:18px;
 }
 .voetbal-head h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-weight:400;
+  font-family:'Fraunces',serif;font-weight:400;
   font-size:clamp(40px,5.5vw,84px);line-height:1;letter-spacing:-.02em;
   font-variation-settings:"opsz" 144,"SOFT" 30;color:var(--paper);margin-bottom:18px;
 }
 .voetbal-head h2 em{font-style:italic;color:var(--amber);font-weight:300}
 .voetbal-head .strap{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-style:italic;font-weight:300;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
   font-size:22px;font-variation-settings:"opsz" 36,"SOFT" 100;
   opacity:.85;color:var(--paper);
 }
@@ -1100,7 +1100,7 @@ body::before{ display:none; }
   color:var(--amber);text-transform:uppercase;min-width:90px;
 }
 .voetbal-agenda .match{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-size:18px;font-weight:400;
+  font-family:'Fraunces',serif;font-size:18px;font-weight:400;
   font-variation-settings:"opsz" 36;
 }
 .voetbal-agenda .time{
@@ -1127,13 +1127,13 @@ body::before{ display:none; }
   text-transform:uppercase;color:var(--amber);display:block;margin-bottom:18px;
 }
 .pas-head h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-weight:400;
+  font-family:'Fraunces',serif;font-weight:400;
   font-size:clamp(40px,5.5vw,84px);line-height:1;letter-spacing:-.02em;
   font-variation-settings:"opsz" 144,"SOFT" 30;color:var(--ink);margin-bottom:18px;
 }
 .pas-head h2 em{font-style:italic;color:var(--amber);font-weight:300}
 .pas-head .strap{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-style:italic;font-weight:300;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
   font-size:22px;font-variation-settings:"opsz" 36,"SOFT" 100;
   opacity:.7;color:var(--ink);
 }
@@ -1145,18 +1145,18 @@ body::before{ display:none; }
   border:1px solid rgba(26,23,20,.1);
 }
 .pas-step .step-num{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-size:48px;font-weight:500;
+  font-family:'Fraunces',serif;font-size:48px;font-weight:500;
   color:var(--amber);line-height:1;display:block;margin-bottom:18px;
   font-variation-settings:"opsz" 144,"SOFT" 30;
 }
 .pas-step h3{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-weight:500;font-size:22px;
+  font-family:'Fraunces',serif;font-weight:500;font-size:22px;
   margin-bottom:12px;color:var(--ink);font-variation-settings:"opsz" 36;
 }
 .pas-step p{font-size:15px;line-height:1.5;color:var(--ink);opacity:.8}
 .pas-milestones{margin-bottom:40px;padding-top:32px;border-top:1px solid rgba(26,23,20,.15)}
 .milestones-intro{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-style:italic;font-size:20px;
+  font-family:'Fraunces',serif;font-style:italic;font-size:20px;
   color:var(--ink);margin-bottom:32px;font-variation-settings:"opsz" 36,"SOFT" 100;
 }
 .milestones-grid{
@@ -1166,7 +1166,7 @@ body::before{ display:none; }
   border-left:2px solid var(--amber);padding-left:20px;
 }
 .m-num{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-size:32px;font-weight:500;
+  font-family:'Fraunces',serif;font-size:32px;font-weight:500;
   display:block;line-height:1;margin-bottom:8px;color:var(--ink);
   font-variation-settings:"opsz" 144;
 }
@@ -1199,7 +1199,7 @@ body::before{ display:none; }
   margin-bottom:18px;
 }
 .reviews-head h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:400;
   font-size:clamp(40px,5.5vw,84px);
   line-height:1;
@@ -1210,7 +1210,7 @@ body::before{ display:none; }
 }
 .reviews-head h2 em{font-style:italic;color:var(--amber);font-weight:300}
 .reviews-head .strap{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-style:italic;
   font-weight:300;
   font-size:22px;
@@ -1236,7 +1236,7 @@ body::before{ display:none; }
   position:absolute;
   top:8px;
   left:18px;
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-size:64px;
   line-height:1;
   color:var(--amber);
@@ -1244,7 +1244,7 @@ body::before{ display:none; }
   font-variation-settings:"opsz" 144;
 }
 .review blockquote{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:300;
   font-size:18px;
   line-height:1.4;
@@ -1332,7 +1332,7 @@ body::before{ display:none; }
   display:block;
 }
 .section-3 h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:400;
   font-size:clamp(36px,4.6vw,72px);
   line-height:1;
@@ -1382,7 +1382,7 @@ body::before{ display:none; }
   color:var(--amber);
 }
 .cta-section h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-weight:400;
   font-size:clamp(40px,6vw,92px);
   line-height:1;
@@ -1462,7 +1462,7 @@ footer .row{
   margin:0 auto;
 }
 footer .crest{
-  font-family:'Fraunces','Fraunces Fallback',serif;
+  font-family:'Fraunces',serif;
   font-size:clamp(48px,5.5vw,72px);
   font-weight:500;
   letter-spacing:-.025em;
@@ -1686,13 +1686,13 @@ footer .colofon{
   text-transform:uppercase;color:var(--amber);display:block;margin-bottom:18px;
 }
 .aanvraag-head h2{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-weight:400;
+  font-family:'Fraunces',serif;font-weight:400;
   font-size:clamp(40px,5.5vw,84px);line-height:1;letter-spacing:-.02em;
   font-variation-settings:"opsz" 144,"SOFT" 30;color:var(--ink);margin-bottom:18px;
 }
 .aanvraag-head h2 em{font-style:italic;color:var(--amber);font-weight:300}
 .aanvraag-head .strap{
-  font-family:'Fraunces','Fraunces Fallback',serif;font-style:italic;font-weight:300;font-size:22px;
+  font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:22px;
   font-variation-settings:"opsz" 36,"SOFT" 100;opacity:.75;color:var(--ink);max-width:50ch;
 }
 .aanvraag-grid{
