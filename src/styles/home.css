@@ -1761,3 +1761,9 @@ footer .colofon{
   .aanvraag-grid{grid-template-columns:1fr;gap:36px}
   .field-row{grid-template-columns:1fr}
 }
+/* Performance op mobiel: de volledige-pagina grain-overlay (SVG-ruis + mix-blend-mode)
+   is een zware compositing-laag op mobiele GPU's. Uit op kleine schermen — het
+   subtiele textuureffect is daar toch nauwelijks zichtbaar. */
+@media (max-width: 768px){
+  body::before{ display: none; }
+}

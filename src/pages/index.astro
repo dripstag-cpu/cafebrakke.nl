@@ -482,17 +482,26 @@ const jsonLd = {
   });
 })();
 
-// Hero-video lazy laden: de poster toont direct, de ~16MB video laadt pas ná de
-// eerste render (window 'load'), zodat hij de laadtijd en LCP niet blokkeert.
+// Hero-video lazy laden: de poster toont direct, de video laadt pas ná de eerste
+// render (window 'load'). Op mobiel / data-besparing slaan we 'm helemaal over
+// (poster blijft staan) en op desktop laden we maar één formaat — geen dubbele download.
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;                       // bij reduced-motion: poster laten staan, geen video
   const start = () => {
     const v = document.querySelector('.hero-video-bg');
     if (!v) return;
-    const sources = v.querySelectorAll('source[data-src]');
+    const small = window.matchMedia('(max-width: 767px)').matches;
+    const conn = navigator.connection;
+    const saveData = !!conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ''));
+    if (small || saveData) return;          // mobiel/zuinig: alleen de poster, scheelt ~1MB
+    const sources = [...v.querySelectorAll('source[data-src]')];
     if (!sources.length || sources[0].src) return;   // al geladen
-    sources.forEach(s => { s.src = s.dataset.src; });
+    // kies één afspeelbaar formaat en verwijder de rest → geen dubbele download
+    const pick = sources.find((s) => v.canPlayType(s.type) === 'probably')
+      || sources.find((s) => v.canPlayType(s.type)) || sources[0];
+    sources.forEach((s) => { if (s !== pick) s.remove(); });
+    pick.src = pick.dataset.src;
     v.load();
     v.play().catch(() => {});
   };
