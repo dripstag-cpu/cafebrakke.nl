@@ -649,8 +649,9 @@ const jsonLd = {
   // (Geen her-meting op fonts.ready meer: de Fraunces-fallback is metric-compatibel,
   //  dus de swap verschuift de layout niet. Die reflow vuurde laat — op het moment dat
   //  het font binnen was — en zette de LCP-timing onnodig laat.)
-  measure();
-  update();
+  // measure() leest getBoundingClientRect (forced reflow). In een rAF ná de eerste paint
+  //  i.p.v. tijdens script-eval → geen lange main-thread taak op het kritieke pad.
+  requestAnimationFrame(() => { measure(); update(); });
 
   // Reveal sections on scroll
   const revealObserver = new IntersectionObserver((entries) => {

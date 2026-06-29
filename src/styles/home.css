@@ -25,17 +25,13 @@ body{
   overflow-x:hidden;
 }
 
-/* Paper grain texture overlay */
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:9999;
-  opacity:var(--grain-opacity);
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
-  mix-blend-mode:multiply;
-}
+/* Paper grain texture overlay — UITGEZET.
+   Was een full-screen `position:fixed` laag met `mix-blend-mode:multiply`. Een blend-mode
+   over de hele viewport dwingt de browser om die laag bij ELKE repaint opnieuw te mengen
+   met alles eronder. Tijdens de scroll-zoom (die continu hertekent) kost dat op tragere
+   CPU's (zoals PageSpeed's testmachine) honderden ms main-thread → TBT-killer.
+   Stond al uit op mobiel; nu ook op desktop. */
+body::before{ display:none; }
 
 /* Post-zoom navigation. Donker bruin café-stijl. Logo en knoppen samen gecentreerd. */
 .post-nav{
@@ -241,15 +237,9 @@ body::before{
   pointer-events:none;
 }
 .hero-intro::before{
-  /* warme grain — café-light-at-night feel */
-  content:'';
-  position:absolute;
-  inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
-  opacity:.08;
-  mix-blend-mode:overlay;
-  pointer-events:none;
-  z-index:1;
+  /* warme grain — UITGEZET. Zelfde feTurbulence + mix-blend-mode-patroon, pal over de
+     hero (boven de vouw, tekent dus bij het laden) → main-thread/paint-kost op trage CPU's. */
+  display:none;
 }
 .hero-intro::after{
   /* vignette */
@@ -403,14 +393,9 @@ body::before{
   color:var(--ink);
 }
 .zoom-wrap::before{
-  /* subtle paper grain */
-  content:'';
-  position:absolute;
-  inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
-  opacity:.05;
-  mix-blend-mode:multiply;
-  pointer-events:none;
+  /* subtle paper grain — UITGEZET (zelfde mix-blend-mode-kost, pal over het zoom-gebied
+     dat tijdens scrollen continu hertekent → duurste plek voor een blend-laag). */
+  display:none;
 }
 /* Section label above the box */
 .zoom-wrap::after{
