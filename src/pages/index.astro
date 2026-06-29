@@ -69,7 +69,7 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <Fragment slot="head">
-    <link rel="preload" as="image" href="/assets/hero-poster.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/hero-poster.webp" type="image/webp" fetchpriority="high" />
   </Fragment>
 
 <!-- ============ POST-ZOOM NAVIGATION ============ -->
@@ -78,7 +78,7 @@ const jsonLd = {
 <!-- ============ HERO INTRO ============ -->
 <section class="hero-intro">
   <div class="hero-poster-bg" aria-hidden="true"></div>
-  <video class="hero-video-bg" muted loop playsinline preload="none" poster="/assets/hero-poster.jpg" aria-hidden="true">
+  <video class="hero-video-bg" muted loop playsinline preload="none" poster="/assets/hero-poster.webp" aria-hidden="true">
     <source data-src="/assets/hero.webm" type="video/webm">
     <source data-src="/assets/hero.mp4" type="video/mp4">
   </video>
@@ -110,37 +110,37 @@ const jsonLd = {
     <div class="image-stage">
       <a class="slot rozengracht" href="#locatie" data-key="rozengracht" aria-label="Café Brakke aan de Rozengracht 16, Jordaan">
         <div class="frame">
-          <Image src={cb1} alt="Tafel in Café Brakke met koffie, notitieboek en zonlicht — Rozengracht 16, Jordaan" widths={[400, 800, 1584]} sizes="(max-width: 768px) 60vw, 800px" loading="eager" fetchpriority="high" />
+          <Image src={cb1} alt="Tafel in Café Brakke met koffie, notitieboek en zonlicht — Rozengracht 16, Jordaan" widths={[768, 1200, 1584]} sizes="100vw" loading="eager" fetchpriority="high" />
         </div>
         <span class="label"><span class="index">01</span>Rozengracht 16</span>
       </a>
       <a class="slot burger" href="/menu.html" data-key="burger" aria-label="De Brakke Burger op de kaart">
         <div class="frame">
-          <Image src={cb2} alt="Brakke Burger op tafel" widths={[400, 800, 1584]} sizes="(max-width: 768px) 60vw, 800px" loading="eager" />
+          <Image src={cb2} alt="Brakke Burger op tafel" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="eager" />
         </div>
         <span class="label"><span class="index">02</span>Brakke Burger</span>
       </a>
       <a class="slot ajax" href="#voetbal" data-key="ajax" aria-label="Ajax kijken bij Café Brakke">
         <div class="frame">
-          <Image src={cb3} alt="Wedstrijd op het scherm bij Café Brakke" widths={[400, 800, 1584]} sizes="(max-width: 768px) 60vw, 800px" loading="eager" />
+          <Image src={cb3} alt="Wedstrijd op het scherm bij Café Brakke" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="eager" />
         </div>
         <span class="label"><span class="index">03</span>Voetbal staat aan</span>
       </a>
       <a class="slot borrel" href="#borrels" data-key="borrel" aria-label="Bedrijfsborrel bij Café Brakke">
         <div class="frame">
-          <Image src={cb4} alt="Bedrijfsborrel met collega's" widths={[400, 800, 1584]} sizes="(max-width: 768px) 60vw, 800px" loading="eager" />
+          <Image src={cb4} alt="Bedrijfsborrel met collega's" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="eager" />
         </div>
         <span class="label"><span class="index">04</span>Bedrijfsborrel</span>
       </a>
       <a class="slot terras" href="#locatie" data-key="terras" aria-label="Terras van Café Brakke">
         <div class="frame">
-          <Image src={cb5} alt="Terras op de Rozengracht in de zon" widths={[400, 800, 1584]} sizes="(max-width: 768px) 60vw, 800px" loading="eager" />
+          <Image src={cb5} alt="Terras op de Rozengracht in de zon" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="eager" />
         </div>
         <span class="label"><span class="index">05</span>Terras</span>
       </a>
       <a class="slot vedett" href="/menu.html" data-key="vedett" aria-label="Drankenkaart Café Brakke">
         <div class="frame">
-          <Image src={cb6} alt="Vedett op de tap" widths={[400, 800, 1584]} sizes="(max-width: 768px) 60vw, 800px" loading="eager" />
+          <Image src={cb6} alt="Vedett op de tap" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="eager" />
         </div>
         <span class="label"><span class="index">06</span>Aan de bar</span>
       </a>
