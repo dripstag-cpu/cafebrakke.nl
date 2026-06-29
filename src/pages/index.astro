@@ -69,8 +69,9 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <Fragment slot="head">
-    <!-- Poster wordt vroeg geladen, maar niet met hoge prioriteit: het LCP is de
-         hero-tekst (Fraunces). De fonts moeten als eerste binnen, niet deze achtergrond. -->
+    <!-- Poster is de hero-achtergrond (.hero-poster-bg, CSS-bg → niet LCP-eligible).
+         Het LCP is de hero-tekst (Fraunces) → die fonts krijgen prioriteit; de poster
+         laadt vroeg mee voor de FCP. Sterk gecomprimeerd (±31KB), zit achter een overlay. -->
     <link rel="preload" as="image" href="/assets/hero-poster.webp" type="image/webp" />
   </Fragment>
 
@@ -80,7 +81,7 @@ const jsonLd = {
 <!-- ============ HERO INTRO ============ -->
 <section class="hero-intro">
   <div class="hero-poster-bg" aria-hidden="true"></div>
-  <video class="hero-video-bg" muted loop playsinline preload="none" poster="/assets/hero-poster.webp" aria-hidden="true">
+  <video class="hero-video-bg" muted loop playsinline preload="none" aria-hidden="true">
     <source data-src="/assets/hero.webm" type="video/webm">
     <source data-src="/assets/hero.mp4" type="video/mp4">
   </video>
@@ -110,37 +111,37 @@ const jsonLd = {
 
     <!-- 6 image slots — start as editorial grid -->
     <div class="image-stage">
-      <a class="slot rozengracht" href="#locatie" data-key="rozengracht" aria-label="Café Brakke aan de Rozengracht 16, Jordaan">
+      <a class="slot rozengracht" href="#locatie" data-key="rozengracht">
         <div class="frame">
-          <Image src={cb1} alt="Tafel in Café Brakke met koffie, notitieboek en zonlicht — Rozengracht 16, Jordaan" widths={[768, 1200, 1584]} sizes="100vw" loading="eager" quality={66} />
+          <Image src={cb1} alt="Tafel in Café Brakke met koffie, notitieboek en zonlicht — Rozengracht 16, Jordaan" widths={[768, 1200, 1584]} sizes="100vw" loading="lazy" quality={66} />
         </div>
         <span class="label"><span class="index">01</span>Rozengracht 16</span>
       </a>
-      <a class="slot burger" href="/menu.html" data-key="burger" aria-label="De Brakke Burger op de kaart">
+      <a class="slot burger" href="/menu.html" data-key="burger">
         <div class="frame">
           <Image src={cb2} alt="Brakke Burger op tafel" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
         </div>
         <span class="label"><span class="index">02</span>Brakke Burger</span>
       </a>
-      <a class="slot ajax" href="#voetbal" data-key="ajax" aria-label="Ajax kijken bij Café Brakke">
+      <a class="slot ajax" href="#voetbal" data-key="ajax">
         <div class="frame">
           <Image src={cb3} alt="Wedstrijd op het scherm bij Café Brakke" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
         </div>
         <span class="label"><span class="index">03</span>Voetbal staat aan</span>
       </a>
-      <a class="slot borrel" href="#borrels" data-key="borrel" aria-label="Bedrijfsborrel bij Café Brakke">
+      <a class="slot borrel" href="#borrels" data-key="borrel">
         <div class="frame">
           <Image src={cb4} alt="Bedrijfsborrel met collega's" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
         </div>
         <span class="label"><span class="index">04</span>Bedrijfsborrel</span>
       </a>
-      <a class="slot terras" href="#locatie" data-key="terras" aria-label="Terras van Café Brakke">
+      <a class="slot terras" href="#locatie" data-key="terras">
         <div class="frame">
           <Image src={cb5} alt="Terras op de Rozengracht in de zon" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
         </div>
         <span class="label"><span class="index">05</span>Terras</span>
       </a>
-      <a class="slot vedett" href="/menu.html" data-key="vedett" aria-label="Drankenkaart Café Brakke">
+      <a class="slot vedett" href="/menu.html" data-key="vedett">
         <div class="frame">
           <Image src={cb6} alt="Vedett op de tap" widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
         </div>
@@ -157,7 +158,7 @@ const jsonLd = {
     <!-- Caption on the final fullscreen Rozengracht image -->
     <div class="box-caption" id="boxCaption">
       <span class="tag">№ 16 · Rozengracht</span>
-      <h3>Bruin café.<br><em>Op de Rozengracht</em>.</h3>
+      <h2>Bruin café.<br><em>Op de Rozengracht</em>.</h2>
     </div>
 
   </div>
@@ -195,7 +196,7 @@ const jsonLd = {
   <div class="reviews-inner">
     <div class="reviews-head">
       <span class="kicker">Wat gasten zeggen</span>
-      <h3>4,7 op <em>Tripadvisor</em>.<br>4,6 op <em>Google</em>.</h3>
+      <h2>4,7 op <em>Tripadvisor</em>.<br>4,6 op <em>Google</em>.</h2>
       <p class="strap">Niet ons verhaal. Hun woorden.</p>
     </div>
     <div class="reviews-grid">
@@ -235,12 +236,12 @@ const jsonLd = {
   <div class="kaart-block">
     <div class="kaart-head">
       <span class="kicker">Kaart</span>
-      <h3>De Brakke Burger.<br><em>En al het andere</em>.</h3>
+      <h2>De Brakke Burger.<br><em>En al het andere</em>.</h2>
       <p class="strap">Bier op tap. Hapjes erbij. Plek voor een gesprek.</p>
     </div>
     <div class="kaart-cols">
       <div class="kaart-col">
-        <h4>Uit de keuken</h4>
+        <h3>Uit de keuken</h3>
         <ul class="kaart-list">
           <li><span>The Classic Drip burger</span><span class="dots"></span><span>€ 13,90</span></li>
           <li><span>Brakke's Signature Combo</span><span class="dots"></span><span>€ 18,50</span></li>
@@ -251,7 +252,7 @@ const jsonLd = {
         </ul>
       </div>
       <div class="kaart-col">
-        <h4>Aan de bar</h4>
+        <h3>Aan de bar</h3>
         <ul class="kaart-list">
           <li><span>Amstel van de tap (vaasje)</span><span class="dots"></span><span>€ 4,00</span></li>
           <li><span>La Chouffe</span><span class="dots"></span><span>€ 6,75</span></li>
@@ -274,14 +275,14 @@ const jsonLd = {
   <div class="borrels-inner">
     <div class="borrels-head">
       <span class="kicker">Borrels &amp; bedrijfsborrels</span>
-      <h3>Met je team<br><em>na het werk</em>.</h3>
+      <h2>Met je team<br><em>na het werk</em>.</h2>
       <p class="strap">Voor tien tot vijfenveertig. Geen vergaderzaal-energie.</p>
     </div>
     <div class="borrels-cards">
       <article class="borrel-card">
         <div class="borrel-card-head">
           <span class="num">A</span>
-          <h4>Onbeperkt drankarrangement</h4>
+          <h3>Onbeperkt drankarrangement</h3>
         </div>
         <p class="price">vanaf <strong>€ 27,50</strong> p.p.<br>voor 2 uur</p>
         <p>Bier, wijn, fris, koffie. Wij houden bij, jij hoeft niet te tellen.</p>
@@ -294,7 +295,7 @@ const jsonLd = {
       <article class="borrel-card">
         <div class="borrel-card-head">
           <span class="num">B</span>
-          <h4>Rekening achteraf</h4>
+          <h3>Rekening achteraf</h3>
         </div>
         <p class="price"><strong>Vrij bestellen</strong><br>één bon, één tekent</p>
         <p>Geen arrangement vooraf. Iedereen bestelt wat hij wil, één rekening op het kantoor.</p>
@@ -320,7 +321,7 @@ const jsonLd = {
   <div class="voetbal-inner">
     <div class="voetbal-head">
       <span class="kicker">Ajax &amp; wedstrijden</span>
-      <h3>Een bruin café<br><em>met de wedstrijd aan</em>.</h3>
+      <h2>Een bruin café<br><em>met de wedstrijd aan</em>.</h2>
       <p class="strap">Voor Ajax, voor de Klassieker, voor een Champions League-avond met je team.</p>
     </div>
     <div class="voetbal-grid">
@@ -329,7 +330,7 @@ const jsonLd = {
         <p>Het blijft een bruin café. Wie aan de bar zit voor een biertje, doet dat. Wie kijkt, kijkt mee. Bij een goal mag het iets harder.</p>
       </div>
       <div class="voetbal-agenda">
-        <h4>Wat we uitzenden</h4>
+        <h3>Wat we uitzenden</h3>
         <ul>
           <li><span class="match">Eredivisie · thuis en uit</span><span class="time">Standaard</span></li>
           <li><span class="match">De Klassieker</span><span class="time">Altijd</span></li>
@@ -366,7 +367,7 @@ const jsonLd = {
     </div>
     <div class="text-block">
       <span class="kicker">Op de Rozengracht</span>
-      <h3>De straat-zijde van<br>de <em>Jordaan</em>.</h3>
+      <h2>De straat-zijde van<br>de <em>Jordaan</em>.</h2>
       <p>Rozengracht 16, in de Jordaan. Drie minuten van de Westermarkt, vijf van het Anne Frank Huis. De Rozengracht is de gedempte hoofdader die de Jordaan oost-west doorsnijdt. De straat-zijde, niet de gracht-zijde.</p>
       <p>Het terras op het zuiden vangt zon vanaf het voorjaar.</p>
       <div class="facts">
@@ -385,7 +386,7 @@ const jsonLd = {
   <div class="aanvraag-inner">
     <div class="aanvraag-head">
       <span class="kicker">Aanvraag &amp; groepen</span>
-      <h3>Met een groep<br><em>langskomen</em>?</h3>
+      <h2>Met een groep<br><em>langskomen</em>?</h2>
       <p class="strap">Voor een gewone avond hoef je niks te regelen — loop binnen. Plan je een borrel, verjaardag of bedrijfsuitje vanaf zo'n tien personen? Stuur een aanvraag, dan houden we plek vrij.</p>
     </div>
     <div class="aanvraag-grid">
@@ -432,7 +433,7 @@ const jsonLd = {
         <p class="form-note">We mailen terug binnen één werkdag. Geen offerte-loop.</p>
       </form>
       <aside class="aanvraag-aside">
-        <h4>Liever direct?</h4>
+        <h3>Liever direct?</h3>
         <p>Bellen mag altijd — vaak is dat het snelst, zeker voor een datum binnenkort of een drukke voetbalavond.</p>
         <p>Tot 30 personen vragen we geen aanbetaling. Factuur op kantooradres met btw-specificatie kan.</p>
         <div class="direct">
@@ -485,11 +486,13 @@ const jsonLd = {
 })();
 
 // Hero-video lazy laden: de poster toont direct, de video laadt pas ná de eerste
-// render (window 'load'). Video speelt ook op mobiel; alleen bij echte data-besparing
-// of 2G slaan we 'm over (poster blijft). Er wordt maar één formaat geladen.
+// render (window 'load'). Op desktop. Op mobiel NIET: daar zou de full-screen video
+// (die laat binnenkomt) het LCP-element worden → trage LCP. Mobiel houdt de statische,
+// donkere poster (.hero-poster-bg). Ook overslaan bij reduced-motion en data-besparing/2G.
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;                       // bij reduced-motion: poster laten staan, geen video
+  if (window.matchMedia('(max-width: 768px)').matches) return;  // mobiel: poster only (LCP-vriendelijk)
   const start = () => {
     const v = document.querySelector('.hero-video-bg');
     if (!v) return;
@@ -643,8 +646,9 @@ const jsonLd = {
 
   window.addEventListener('scroll', tick, {passive:true});
   window.addEventListener('resize', () => { measure(); tick(); });
-  // Hermeten na font-load (layout kan verschuiven door de webfont-swap)
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); tick(); });
+  // (Geen her-meting op fonts.ready meer: de Fraunces-fallback is metric-compatibel,
+  //  dus de swap verschuift de layout niet. Die reflow vuurde laat — op het moment dat
+  //  het font binnen was — en zette de LCP-timing onnodig laat.)
   measure();
   update();
 
