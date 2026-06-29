@@ -483,18 +483,17 @@ const jsonLd = {
 })();
 
 // Hero-video lazy laden: de poster toont direct, de video laadt pas ná de eerste
-// render (window 'load'). Op mobiel / data-besparing slaan we 'm helemaal over
-// (poster blijft staan) en op desktop laden we maar één formaat — geen dubbele download.
+// render (window 'load'). Video speelt ook op mobiel; alleen bij echte data-besparing
+// of 2G slaan we 'm over (poster blijft). Er wordt maar één formaat geladen.
 (() => {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) return;                       // bij reduced-motion: poster laten staan, geen video
   const start = () => {
     const v = document.querySelector('.hero-video-bg');
     if (!v) return;
-    const small = window.matchMedia('(max-width: 767px)').matches;
     const conn = navigator.connection;
     const saveData = !!conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ''));
-    if (small || saveData) return;          // mobiel/zuinig: alleen de poster, scheelt ~1MB
+    if (saveData) return;                   // alleen bij databesparing/2G: enkel de poster
     const sources = [...v.querySelectorAll('source[data-src]')];
     if (!sources.length || sources[0].src) return;   // al geladen
     // kies één afspeelbaar formaat en verwijder de rest → geen dubbele download
