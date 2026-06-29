@@ -69,7 +69,9 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <Fragment slot="head">
-    <link rel="preload" as="image" href="/assets/hero-poster.webp" type="image/webp" fetchpriority="high" />
+    <!-- Poster wordt vroeg geladen, maar niet met hoge prioriteit: het LCP is de
+         hero-tekst (Fraunces). De fonts moeten als eerste binnen, niet deze achtergrond. -->
+    <link rel="preload" as="image" href="/assets/hero-poster.webp" type="image/webp" />
   </Fragment>
 
 <!-- ============ POST-ZOOM NAVIGATION ============ -->
