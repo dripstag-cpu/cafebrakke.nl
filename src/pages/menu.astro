@@ -1,0 +1,500 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/menu.css';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cafebrakke.nl/" },
+    { "@type": "ListItem", "position": 2, "name": "De kaart", "item": "https://cafebrakke.nl/menu.html" }
+  ]
+};
+---
+<BaseLayout
+  title="De kaart · Café Brakke — ontbijt, burgers, cocktails & dranken"
+  description="De volledige kaart van Café Brakke aan de Rozengracht 16 in de Jordaan: ontbijt, lunch, burgers, gerechten, borrelhapjes, cocktails, bier, wijn en koffie."
+  canonical="https://cafebrakke.nl/menu.html"
+  ogType="restaurant.menu"
+  ogTitle="De kaart · Café Brakke"
+  ogDescription="Ontbijt, burgers, cocktails en dranken — de volledige kaart van Café Brakke in de Jordaan."
+  ogImage="https://cafebrakke.nl/assets/cb2-burger.jpg"
+  jsonLd={jsonLd}
+>
+<header class="topbar">
+  <a class="back" href="/">Terug</a>
+  <a class="brand" href="/">Café Brakke<span>.</span></a>
+  <a class="back" style="text-transform:none;letter-spacing:.04em" href="tel:+31203201657">020 320 1657</a>
+</header>
+
+<section class="menu-hero">
+  <span class="kicker">Rozengracht 16 · Jordaan</span>
+  <h1>De <em>kaart</em>.</h1>
+  <p>Van ontbijt tot de laatste cocktail. Keuken open, tap open, koffie altijd.</p>
+</section>
+
+<nav class="cat-nav" aria-label="Menu-categorieën">
+  <div class="cat-nav-inner">
+    <a href="#ontbijt">Ontbijt</a>
+    <a href="#lunch">Lunch</a>
+    <a href="#burgers">Burgers</a>
+    <a href="#gerechten">Gerechten</a>
+    <a href="#snacks">Snacks &amp; Wings</a>
+    <a href="#cocktails">Cocktails</a>
+    <a href="#bier">Bier &amp; Wijn</a>
+    <a href="#sterk">Sterke drank</a>
+    <a href="#koffie">Koffie &amp; Warm</a>
+    <a href="#fris">Fris</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ ONTBIJT ============ -->
+  <section class="cat" id="ontbijt">
+    <h2 class="cat-title">Ontbijt &amp; <em>eieren</em></h2>
+    <p class="cat-note">Tot in de middag · all day breakfast</p>
+    <div class="groups-2">
+      <div class="group">
+        <h3>Croissants</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Croissant Naturel</span><span class="item-price">6,50</span></div><p class="item-desc">Met jam, honing en boter.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Croissant Kaas</span><span class="item-price">7,90</span></div><p class="item-desc">Botercroissant met kaas.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Croissant Ham &amp; Kaas</span><span class="item-price">9,90</span></div><p class="item-desc">Warm, met gesmolten kaas.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Croissant Zalm</span><span class="item-price">9,90</span></div><p class="item-desc">Gerookte zalm, roomkaas en dille.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Croissant Nutella</span><span class="item-price">9,90</span></div><p class="item-desc">Gevuld met romige Nutella.</p></div>
+      </div>
+      <div class="group">
+        <h3>Pannenkoeken — zoet</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Classic</span><span class="item-price">9,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Nutella</span><span class="item-price">11,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Banaan</span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Kaneel</span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Appel &amp; honing</span><span class="item-price">12,50</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Pannenkoeken — hartig</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Kaas</span><span class="item-price">10,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ham &amp; kaas</span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Bacon &amp; kaas</span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ham, kaas &amp; ei</span><span class="item-price">13,50</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Wentelteefjes</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Classic French Toast</span><span class="item-price">9,90</span></div><p class="item-desc">Licht bestoven met poedersuiker.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Nutella French Toast</span><span class="item-price">11,90</span></div><p class="item-desc">Gevuld met warme Nutella.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Banaan-karamel French Toast</span><span class="item-price">12,90</span></div><p class="item-desc">Banaan met karameldrizzle.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Kaneel French Toast</span><span class="item-price">10,90</span></div><p class="item-desc">Met kaneelsuiker.</p></div>
+      </div>
+      <div class="group">
+        <h3>Omeletten</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Classic</span><span class="item-price">10,90</span></div><p class="item-desc">Simpel en luchtig.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Kaas</span><span class="item-price">11,90</span></div><p class="item-desc">Gesmolten cheddar of Gouda.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Veggie</span><span class="item-price">12,90</span></div><p class="item-desc">Paprika, ui en champignons.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ham &amp; kaas</span><span class="item-price">12,90</span></div><p class="item-desc">Gerookte ham en kaas.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mediterraan</span><span class="item-price">14,90</span></div><p class="item-desc">Feta, spinazie, olijven en tomaat.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Zalm</span><span class="item-price">14,90</span></div><p class="item-desc">Luchtig ei met gerookte zalm.</p></div>
+      </div>
+      <div class="group">
+        <h3>Ontbijtschotels</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Classic English Breakfast</span><span class="item-price">10,90</span></div><p class="item-desc">Toast, eieren, bacon, tomaat.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Full English Breakfast</span><span class="item-price">14,90</span></div><p class="item-desc">Toast, eieren, bacon, tomaat, bonen, champignons en worst.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Continental Breakfast</span><span class="item-price">10,90</span></div><p class="item-desc">Toast, ham, kaas, honing, jam en boter.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Veggie English Breakfast</span><span class="item-price">12,90</span></div><p class="item-desc">Toast, eieren, gegrilde groenten en bonen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LUNCH ============ -->
+  <section class="cat" id="lunch">
+    <h2 class="cat-title">Lunch &amp; <em>salades</em></h2>
+    <p class="cat-note">Panini · salades</p>
+    <div class="groups-2">
+      <div class="group">
+        <h3>Panini</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Caprese</span><span class="item-price">9,50</span></div><p class="item-desc">Gesmolten mozzarella, tomaat en basilicumpesto.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ham &amp; kaas</span><span class="item-price">9,50</span></div><p class="item-desc">Gerookte ham en gesmolten cheddar.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Chicken Pesto</span><span class="item-price">12,50</span></div><p class="item-desc">Gegrilde kip, pesto en mozzarella.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Tuna Melt</span><span class="item-price">11,50</span></div><p class="item-desc">Tonijnsalade met gesmolten kaas.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Veggie</span><span class="item-price">11,50</span></div><p class="item-desc">Gegrilde paprika, ui, courgette en mozzarella.</p></div>
+      </div>
+      <div class="group">
+        <h3>Salades</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Mix Salad</span><span class="item-price">5,75</span></div><p class="item-desc">Gemengde sla met tomaat en komkommer, lichte huisdressing.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Caesar Salad</span><span class="item-price">10,90</span></div><p class="item-desc">Romaine, croutons en parmezaan in klassieke caesardressing.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Caesar Chicken Salad</span><span class="item-price">13,90</span></div><p class="item-desc">Gegrilde kipfilet op romaine met croutons en parmezaan.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Greek Salad</span><span class="item-price">10,90</span></div><p class="item-desc">Sla, tomaat, komkommer, rode ui, olijven en feta.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Chicken Avocado Salad</span><span class="item-price">15,50</span></div><p class="item-desc">Gegrilde kip, avocado, pijnboompitten en parmezaan.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BURGERS ============ -->
+  <section class="cat" id="burgers">
+    <h2 class="cat-title">Burgers</h2>
+    <p class="cat-note">Double smashed Irish beef, tenzij anders vermeld</p>
+    <div class="groups-2">
+      <div class="group">
+        <div class="item"><div class="item-row"><span class="item-name">The Classic Drip</span><span class="item-price">13,90</span></div><p class="item-desc">Dubbele smashed beef, cheddar, augurk, ui, ketchup, mosterd.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">BBQ Bacon Burger</span><span class="item-price">15,90</span></div><p class="item-desc">Smashed beef, cheddar, smoky bacon, BBQ-saus, uienring.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mushroom Swiss Burger</span><span class="item-price">16,90</span></div><p class="item-desc">Smashed beef, Zwitserse kaas, gebakken champignons, knoflookmayo.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Spicy Jalapeño Burger</span><span class="item-price">14,90</span></div><p class="item-desc">Smashed beef, cheddar, jalapeños, pittige mayo.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">The Truffle Philly</span><span class="item-price">17,50</span></div><p class="item-desc">Gegrilde steak, cheddar, ui, truffelmayo.</p></div>
+      </div>
+      <div class="group">
+        <div class="item"><div class="item-row"><span class="item-name">The Crispy Thigh</span><span class="item-price">13,90</span></div><p class="item-desc">Buttermilk fried chicken thigh, slaw, augurk, pittige mayo.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Korean Fried Chicken Burger</span><span class="item-price">13,90</span></div><p class="item-desc">Krokante kip, gochujang-glaze, sesam.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">The Grilled Thigh</span><span class="item-price">13,90</span></div><p class="item-desc">Gegrilde chicken thigh, slaw, augurk, knoflookmayo.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Brakke's Signature Combo</span><span class="item-price">18,50</span></div><p class="item-desc">Irish beef + fried chicken, cheddar, sla, truffelmayo, drip sauce.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">The Beyond Dream <em>(vegan)</em></span><span class="item-price">13,90</span></div><p class="item-desc">Vegan patty, vegan kaas, sla, tomaat, augurk, krokante ui.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GERECHTEN ============ -->
+  <section class="cat" id="gerechten">
+    <h2 class="cat-title">Gerechten</h2>
+    <p class="cat-note">Inclusief friet en salade</p>
+    <div class="groups-2">
+      <div class="group">
+        <div class="item"><div class="item-row"><span class="item-name">Fish &amp; Chips</span><span class="item-price">19,90</span></div><p class="item-desc">Witvis in huisgemaakt bierbeslag, friet, coleslaw en huisgemaakte citroen-tartaar.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Kipsaté van de dij</span><span class="item-price">19,50</span></div><p class="item-desc">Gegrilde chicken thigh, romige pindasaus, friet en frisse salade.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Gegrilde chicken thigh</span><span class="item-price">18,50</span></div><p class="item-desc">Gemarineerd met kruiden, friet en frisse salade.</p></div>
+      </div>
+      <div class="group">
+        <div class="item"><div class="item-row"><span class="item-name">Spareribs</span><span class="item-price">20,90</span></div><p class="item-desc">Langzaam gegaard, geglazuurd met huisgemaakte BBQ-saus, friet en salade.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Steak</span><span class="item-price">23,90</span></div><p class="item-desc">Gegrilde steak, romige champignonsaus, friet en frisse salade.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SNACKS & WINGS ============ -->
+  <section class="cat" id="snacks">
+    <h2 class="cat-title">Snacks, dirty fries &amp; <em>wings</em></h2>
+    <p class="cat-note">Voor bij de borrel · om te delen</p>
+    <div class="groups-2">
+      <div class="group">
+        <h3>Sides</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Huisgemaakte friet</span><span class="item-price">5,25</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mozzarella sticks</span><span class="item-price">7,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Huisgemaakte uienringen</span><span class="item-price">8,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Nachos</span><span class="item-price">10,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Loaded Nachos + pulled chicken of beef</span><span class="item-price">14,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Bitterballen (6 st.)</span><span class="item-price">7,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Jalapeño Poppers</span><span class="item-price">8,90</span></div><p class="item-desc">Gevuld met kaas, pittig.</p></div>
+      </div>
+      <div class="group">
+        <h3>Dirty Fries</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Sticky Cheese Jalapeño</span><span class="item-price">9,90</span></div><p class="item-desc">Friet, cheddarsaus, jalapeños, gebakken ui.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Truffle Parmesan Fries</span><span class="item-price">9,90</span></div><p class="item-desc">Friet, truffelmayo, parmezaan.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Smash Fries</span><span class="item-price">14,90</span></div><p class="item-desc">Friet met smashed beef, cheddar, augurk, ui, drip sauce.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Chili Cheese Fries</span><span class="item-price">14,90</span></div><p class="item-desc">Friet met chili beef, cheddarsaus, zure room.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Pulled Chicken Fries</span><span class="item-price">14,90</span></div><p class="item-desc">Friet, pulled chicken, BBQ-saus, kaas.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Buffalo Fries</span><span class="item-price">14,90</span></div><p class="item-desc">Friet met buffalo chicken en blauwe kaas.</p></div>
+      </div>
+      <div class="group">
+        <h3>Streetfood &amp; bites</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Smashed Beef Taco's</span><span class="item-price">14,90</span></div><p class="item-desc">Tortilla's met smashed beef, cheddar, sla, tomaat, huissaus.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mixed Dutch Snacks</span><span class="item-price">16,90</span></div><p class="item-desc">Klassieke Hollandse snacks om te delen, met sauzen.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Chicken Quesadillas</span><span class="item-price">15,90</span></div><p class="item-desc">Gegrilde kip en kaas in krokante tortilla, met sla, tomaat, huissaus.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Chicken Tenders</span><span class="item-price">8,90</span></div><p class="item-desc">Huisgemaakt van chicken thigh, goudbruin gefrituurd, met dipsaus.</p></div>
+      </div>
+      <div class="group">
+        <h3>Homemade Wings <span class="price-cols">6 / 12 / 18 st.</span></h3>
+        <div class="item"><div class="item-row"><span class="item-name">Brakke Wings</span><span class="item-price"><span class="multi">10,50</span> <span class="multi">18,50</span> <span class="multi">26,50</span></span></div><p class="item-desc">Sticky soja-knoflook glaze, sesam.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Hot Brakke Wings</span><span class="item-price"><span class="multi">10,50</span> <span class="multi">18,50</span> <span class="multi">26,50</span></span></div><p class="item-desc">Pittige chiliglaze, rode peper.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Sweet BBQ Wings</span><span class="item-price"><span class="multi">10,50</span> <span class="multi">18,50</span> <span class="multi">26,50</span></span></div><p class="item-desc">Smoky honing-BBQ.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Buffalo Wings</span><span class="item-price"><span class="multi">10,50</span> <span class="multi">18,50</span> <span class="multi">26,50</span></span></div><p class="item-desc">Klassieke buffalosaus, blauwekaasdip.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Garlic Parmesan Wings</span><span class="item-price"><span class="multi">10,50</span> <span class="multi">18,50</span> <span class="multi">26,50</span></span></div><p class="item-desc">Knoflookboter en parmezaan.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Honey Mustard Wings</span><span class="item-price"><span class="multi">10,50</span> <span class="multi">18,50</span> <span class="multi">26,50</span></span></div><p class="item-desc">Zoete honing-mosterdglaze.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COCKTAILS ============ -->
+  <section class="cat" id="cocktails">
+    <h2 class="cat-title">Cocktails &amp; <em>shots</em></h2>
+    <p class="cat-note">Cheers! · ook 's ochtends bij het ontbijt</p>
+    <div class="group">
+      <h3>Cocktails</h3>
+      <div class="compact">
+        <div class="item"><div class="item-row"><span class="item-name">Spritz <span style="opacity:.6;font-weight:400">— Aperol, Limoncello of Watermelon</span></span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Tequila Sunrise</span><span class="item-price">11,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Moscow Mule</span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Cuba Libre</span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Dark &amp; Stormy</span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mojito</span><span class="item-price">13,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Negroni</span><span class="item-price">14,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Amaretto Sour</span><span class="item-price">14,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Whiskey Sour</span><span class="item-price">14,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Margarita</span><span class="item-price">13,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Manhattan</span><span class="item-price">14,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Espresso Martini</span><span class="item-price">14,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Porn Star Martini</span><span class="item-price">14,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Long Island Ice Tea</span><span class="item-price">16,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Sex on the Beach</span><span class="item-price">14,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Orgasm</span><span class="item-price">12,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Cosmopolitan</span><span class="item-price">14,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Bloody Mary</span><span class="item-price">11,95</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mimosa</span><span class="item-price">8,95</span></div></div>
+      </div>
+    </div>
+    <div class="group">
+      <h3>Special Shots</h3>
+      <div class="compact">
+        <div class="item"><div class="item-row"><span class="item-name">Baby Guinness</span><span class="item-price">7,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Apple Pie</span><span class="item-price">7,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Kamikaze</span><span class="item-price">7,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ice Tea Green</span><span class="item-price">7,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Jäger Bomb</span><span class="item-price">—</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BIER & WIJN ============ -->
+  <section class="cat" id="bier">
+    <h2 class="cat-title">Bier &amp; <em>wijn</em></h2>
+    <p class="cat-note">Van de tap · op fles · per glas of fles</p>
+    <div class="groups-2">
+      <div class="group">
+        <h3>Tapbier</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Amstel Fluitje · 0,22 L</span><span class="item-price">3,60</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Amstel Vaasje · 0,25 L</span><span class="item-price">4,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Amstel Pint · 0,5 L</span><span class="item-price">8,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">La Chouffe · 0,25 L</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">La Chouffe Pint · 0,5 L</span><span class="item-price">11,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Brouwerij 't IJ — IJwit · 0,25 L</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">IJwit Pint · 0,5 L</span><span class="item-price">11,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Apple Bandit · 0,25 L</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Apple Bandit Pint · 0,5 L</span><span class="item-price">11,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mokum · 0,25 L</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mokum Pint · 0,5 L</span><span class="item-price">11,50</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Flesbier</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Amstel Radler</span><span class="item-price">5,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Amstel Radler 0.0%</span><span class="item-price">5,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Mort Subite Kriek</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">IPA</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Duvel</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Corona</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Somersby Cider</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Affligem Dubbel</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Heineken Silver</span><span class="item-price">5,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Heineken 0.0%</span><span class="item-price">5,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Desperados</span><span class="item-price">6,75</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Wijn <span class="price-cols">glas / fles</span></h3>
+        <div class="item"><div class="item-row"><span class="item-name">Huiswijn rood</span><span class="item-price"><span class="multi">5,75</span> <span class="multi">34,00</span></span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Huiswijn wit</span><span class="item-price"><span class="multi">5,75</span> <span class="multi">34,00</span></span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Huiswijn rosé</span><span class="item-price"><span class="multi">5,75</span> <span class="multi">34,00</span></span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Baby Prosecco · 0,2 L</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Prosecco · 0,75 L</span><span class="item-price">38,50</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STERKE DRANK ============ -->
+  <section class="cat" id="sterk">
+    <h2 class="cat-title">Sterke <em>drank</em></h2>
+    <p class="cat-note">Bar gezellig</p>
+    <div class="groups-2">
+      <div class="group">
+        <h3>Whisky</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Johnnie Walker Red Label</span><span class="item-price">7,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Johnnie Walker Black Label</span><span class="item-price">8,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Jack Daniel's</span><span class="item-price">7,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Jameson</span><span class="item-price">7,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Chivas</span><span class="item-price">8,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">The Famous Grouse</span><span class="item-price">7,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Four Roses</span><span class="item-price">7,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ballantine's</span><span class="item-price">7,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Glenfiddich</span><span class="item-price">8,50</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Rum</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Bacardí Carta Blanca</span><span class="item-price">6,25</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Bacardí Carta Negra</span><span class="item-price">7,25</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Bacardí Limón</span><span class="item-price">6,25</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Captain Morgan White</span><span class="item-price">7,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Captain Morgan Spiced Gold</span><span class="item-price">7,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Havana Club 3 Años</span><span class="item-price">7,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Havana Club 7 Años</span><span class="item-price">8,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Havana Especial</span><span class="item-price">6,50</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Gin, Vodka &amp; Tequila</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Gordon's Gin</span><span class="item-price">6,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Bombay Gin</span><span class="item-price">7,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Beefeater Gin</span><span class="item-price">7,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Smirnoff Vodka</span><span class="item-price">6,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Absolut Vodka</span><span class="item-price">7,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Grey Goose Vodka</span><span class="item-price">7,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Sierra Silver Tequila</span><span class="item-price">6,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Sierra Gold Tequila</span><span class="item-price">6,50</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Cognac &amp; likeur</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Rémy Martin</span><span class="item-price">8,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ansac Cognac</span><span class="item-price">8,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Hennessy</span><span class="item-price">8,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Malibu</span><span class="item-price">6,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Jägermeister</span><span class="item-price">4,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Vieux</span><span class="item-price">4,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Salmari</span><span class="item-price">4,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Baileys</span><span class="item-price">6,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Sambuca</span><span class="item-price">6,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Kahlúa</span><span class="item-price">6,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Licor 43</span><span class="item-price">6,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Amaretto Disaronno</span><span class="item-price">6,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Jonge jenever</span><span class="item-price">4,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Oude jenever</span><span class="item-price">5,00</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Limoncello</span><span class="item-price">4,50</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KOFFIE & WARM ============ -->
+  <section class="cat" id="koffie">
+    <h2 class="cat-title">Koffie &amp; <em>warme dranken</em></h2>
+    <p class="cat-note">Oat- / amandelmelk +0,50 · extra shot +1,00</p>
+    <div class="groups-2">
+      <div class="group">
+        <h3>Koffie</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Espresso</span><span class="item-price">3,25</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Dubbele espresso</span><span class="item-price">3,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Espresso Macchiato</span><span class="item-price">3,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Americano</span><span class="item-price">3,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Cappuccino</span><span class="item-price">3,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Caffè Latte</span><span class="item-price">4,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Flat White</span><span class="item-price">4,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Latte Macchiato</span><span class="item-price">4,75</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Cortado</span><span class="item-price">4,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Caffè Mocha</span><span class="item-price">4,90</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Iced coffee <span class="price-cols">extra topping +0,50</span></h3>
+        <div class="item"><div class="item-row"><span class="item-name">Iced Americano</span><span class="item-price">4,20</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Iced Latte</span><span class="item-price">4,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Iced Cappuccino</span><span class="item-price">4,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Iced Vanilla Latte</span><span class="item-price">5,40</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Iced Caramel Latte</span><span class="item-price">5,40</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Iced Mocha</span><span class="item-price">5,40</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Iced Matcha Latte</span><span class="item-price">6,50</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Thee &amp; warm</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Thee</span><span class="item-price">3,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Verse gember-thee</span><span class="item-price">4,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Verse munt-thee</span><span class="item-price">4,90</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Chai Latte</span><span class="item-price">5,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Matcha Latte</span><span class="item-price">6,00</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Warme chocolademelk</h3>
+        <div class="item"><div class="item-row"><span class="item-name">Warme chocolademelk</span><span class="item-price">4,90</span></div><p class="item-desc">Extra slagroom +0,50.</p></div>
+        <div class="item"><div class="item-row"><span class="item-name">Deluxe — slagroom &amp; marshmallow</span><span class="item-price">6,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Met Malibu</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Met Baileys</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Met rum</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Met Kahlúa</span><span class="item-price">10,50</span></div></div>
+      </div>
+      <div class="group">
+        <h3>Coffee Specials <span class="price-cols">met slagroom</span></h3>
+        <div class="item"><div class="item-row"><span class="item-name">Irish Coffee — Jameson</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Baileys Coffee</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">French Coffee — Grand Marnier</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Spanish Coffee — Quaranta y Trés</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Jamaican Coffee — Tia Maria</span><span class="item-price">10,50</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Italian Coffee — Amaretto</span><span class="item-price">10,50</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FRIS ============ -->
+  <section class="cat" id="fris">
+    <h2 class="cat-title">Frisdrank &amp; <em>sappen</em></h2>
+    <div class="group">
+      <div class="compact">
+        <div class="item"><div class="item-row"><span class="item-name">Coca-Cola</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Coca-Cola Zero</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Sprite</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Fanta Orange</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Fanta Cassis</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Appelsap</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Jus d'orange</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ice Tea Green</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ice Tea Sparkling</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ice Tea Peach</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Bitter Lemon</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ginger Ale</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Tonic</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Ginger Beer</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Spa blauw / rood</span><span class="item-price">3,80</span></div></div>
+        <div class="item"><div class="item-row"><span class="item-name">Red Bull <span style="opacity:.6;font-weight:400">— ook sugar free / watermelon</span></span><span class="item-price">4,80</span></div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="menu-foot">
+  <p>Liever even langskomen?</p>
+  <p class="disc">Prijzen in euro's, incl. btw · pin, contant &amp; creditcard</p>
+  <div class="foot-cta-row">
+    <a class="primary" href="/#reserveren">Aanvraag voor een groep</a>
+    <a class="ghost" href="tel:+31203201657">Bel 020 320 1657</a>
+    <a class="ghost" href="/">Terug naar home</a>
+  </div>
+</section>
+
+<a class="totop" href="#ontbijt">↑ Terug naar boven</a>
+
+<script>
+// Meet de hoogte van de sticky balken → exacte aansluiting, geen kier/overlap
+(() => {
+  const root = document.documentElement;
+  const topbar = document.querySelector('.topbar');
+  const catnav = document.querySelector('.cat-nav');
+  const sync = () => {
+    if (topbar) root.style.setProperty('--topbar-h', topbar.offsetHeight + 'px');
+    if (catnav) root.style.setProperty('--catnav-h', catnav.offsetHeight + 'px');
+  };
+  sync();
+  window.addEventListener('resize', sync);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {
+    sync();
+    // Bij binnenkomen op een #anker: opnieuw uitlijnen nadat de hoogtes definitief zijn
+    if (location.hash){
+      const t = document.getElementById(location.hash.slice(1));
+      if (t) t.scrollIntoView();
+    }
+  });
+})();
+
+// Highlight the active category chip while scrolling
+(() => {
+  const links = [...document.querySelectorAll('.cat-nav a')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  // Tap a chip → mark it active immediately (don't wait for the scroll observer)
+  links.forEach(a => a.addEventListener('click', () => {
+    links.forEach(l => l.classList.remove('active'));
+    a.classList.add('active');
+    a.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+  }));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        links.forEach(l => l.classList.remove('active'));
+        const link = map.get(e.target.id);
+        if (link){
+          link.classList.add('active');
+          link.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+        }
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('.cat').forEach(s => obs.observe(s));
+})();
+</script>
+</BaseLayout>

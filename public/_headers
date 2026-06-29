@@ -1,0 +1,10 @@
+# Netlify cache-headers. Assets krijgen een lange, onveranderlijke cache
+# (bestandsnamen wijzigen bij een update); HTML wordt altijd opnieuw gevalideerd.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
