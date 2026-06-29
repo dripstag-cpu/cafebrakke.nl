@@ -545,10 +545,18 @@ const jsonLd = {
   let ticking = false;
   let lastProgress = -1;
 
+  // Layout-metingen cachen i.p.v. elke frame uitlezen → geen forced reflow / lange taken.
+  let containerTop = 0;
+  let total = 1;
+  const rozImg = slots.rozengracht.querySelector('img');
+  function measure(){
+    const r = container.getBoundingClientRect();
+    containerTop = r.top + window.scrollY;
+    total = Math.max(1, container.offsetHeight - window.innerHeight);
+  }
+
   function update(){
-    const rect = container.getBoundingClientRect();
-    const total = container.offsetHeight - window.innerHeight;
-    let raw = Math.max(0, Math.min(1, -rect.top / total));
+    let raw = Math.max(0, Math.min(1, (window.scrollY - containerTop) / total));
     if (Math.abs(raw - lastProgress) < 0.001) return;
     lastProgress = raw;
 
@@ -600,7 +608,6 @@ const jsonLd = {
     }
 
     // ---- ROZENGRACHT IMAGE FILTER — cinematic ramp ----
-    const rozImg = slots.rozengracht.querySelector('img');
     if (rozImg){
       const sat = 0.88 + e * 0.20;      // .88 → 1.08
       const con = 1.05 + e * 0.10;      // 1.05 → 1.15
@@ -633,7 +640,10 @@ const jsonLd = {
   }
 
   window.addEventListener('scroll', tick, {passive:true});
-  window.addEventListener('resize', tick);
+  window.addEventListener('resize', () => { measure(); tick(); });
+  // Hermeten na font-load (layout kan verschuiven door de webfont-swap)
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); tick(); });
+  measure();
   update();
 
   // Reveal sections on scroll
