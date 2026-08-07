@@ -1,0 +1,71 @@
+---
+import { path, otherLang, type Lang, type RouteKey } from '../i18n';
+import { useCopy } from '../i18n/copy';
+
+export interface Props {
+  lang: Lang;
+  route: RouteKey;
+}
+
+const { lang, route } = Astro.props;
+const c = useCopy(lang);
+const other = otherLang(lang);
+
+/* De banner staat in de ANDERE taal — een Nederlandse bezoeker op /en/ krijgt
+   Nederlandse tekst te zien, en andersom. Vandaar het lang-attribuut. */
+const target = path(route, other);
+---
+<!-- Bewust een <div> en geen <aside>: een <aside> heeft de impliciete rol
+     `complementary`, en daar is role="status" niet op toegestaan (axe:
+     aria-allowed-role). Een <div> heeft geen impliciete rol, dus die mag het wel. -->
+<div class="lang-banner" role="status" aria-live="polite" data-lang={lang} lang={other}>
+  <p class="lang-banner-text">{c.langBannerText}</p>
+  <a class="lang-banner-cta" href={target} data-lang-switch>{c.langBannerCta}</a>
+  <button class="lang-banner-dismiss" type="button" data-lang-dismiss aria-label={c.langBannerDismiss} lang={lang}>×</button>
+</div>
+
+<script>
+/* Taalbanner: alleen tonen als de browsertaal duidelijk afwijkt van de paginataal.
+   Eén keer een keuze gemaakt (switchen of wegklikken) → nooit meer tonen.
+   De banner is een overlay (position:fixed), dus hij verschuift geen layout: CLS blijft 0.
+   Hij verdwijnt vanzelf zodra je voorbij de hero scrolt, zodat hij de post-nav
+   (die daar juist inschuift) niet blijft afdekken. */
+(() => {
+  const banner = document.querySelector('.lang-banner');
+  if (!banner) return;
+
+  const STORAGE_KEY = 'brakke_lang_pref';
+  let stored = null;
+  try { stored = localStorage.getItem(STORAGE_KEY); } catch { /* private mode */ }
+  if (stored) return;
+
+  const lang = banner.getAttribute('data-lang');
+  const browser = (navigator.language || '').slice(0, 2).toLowerCase();
+  const shouldShow = (lang === 'nl' && browser !== 'nl') || (lang === 'en' && browser === 'nl');
+  if (!shouldShow) return;
+
+  const remember = (value) => {
+    try { localStorage.setItem(STORAGE_KEY, value); } catch { /* private mode */ }
+  };
+  const hide = () => banner.classList.remove('is-visible');
+
+  banner.querySelector('[data-lang-switch]')?.addEventListener('click', () => {
+    remember(lang === 'nl' ? 'en' : 'nl');
+  });
+  banner.querySelector('[data-lang-dismiss]')?.addEventListener('click', () => {
+    hide();
+    remember(lang);
+  });
+
+  // Wegschuiven zodra de bezoeker echt begint te scrollen.
+  const onScroll = () => {
+    if (window.scrollY > window.innerHeight * 0.5) {
+      hide();
+      window.removeEventListener('scroll', onScroll);
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  setTimeout(() => banner.classList.add('is-visible'), 500);
+})();
+</script>

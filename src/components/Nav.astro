@@ -1,17 +1,35 @@
 ---
 // Post-zoom navigatie (verschijnt na de hero-zoom). Styling staat in home.css.
+import LangSwitch from './LangSwitch.astro';
+import { path, type Lang } from '../i18n';
+import { useCopy } from '../i18n/copy';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = useCopy(lang);
 ---
-<nav class="post-nav" id="postNav" aria-label="Hoofd-navigatie">
+<nav class="post-nav" id="postNav" aria-label={c.nav.ariaLabel}>
   <a href="#" class="brand">Café Brakke<span>.</span></a>
-  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+  <button
+    class="nav-toggle"
+    id="navToggle"
+    aria-label={c.nav.openMenu}
+    aria-expanded="false"
+    data-label-open={c.nav.openMenu}
+    data-label-close={c.nav.closeMenu}
+  >
     <span></span><span></span><span></span>
   </button>
   <div class="menu" id="navMenu">
-    <a href="/menu.html">Kaart</a>
-    <a href="#borrels">Borrels</a>
-    <a href="#voetbal">Voetbal</a>
-    <a href="#over">Over</a>
-    <a href="#locatie">Locatie</a>
-    <a href="#reserveren" class="cta-link">Aanvraag</a>
+    <a href={path('menu', lang)}>{c.nav.menu}</a>
+    <a href="#borrels">{c.nav.borrels}</a>
+    <a href="#voetbal">{c.nav.voetbal}</a>
+    <a href="#over">{c.nav.over}</a>
+    <a href="#locatie">{c.nav.locatie}</a>
+    <a href="#reserveren" class="cta-link">{c.nav.aanvraag}</a>
   </div>
+  <LangSwitch lang={lang} route="home" />
 </nav>

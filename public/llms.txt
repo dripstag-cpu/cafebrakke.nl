@@ -14,8 +14,17 @@
 
 ## Pagina's
 
-- [Home](https://cafebrakke.nl/): introductie, sfeer, locatie, borrels, voetbal, De Brakke Pas en groepsaanvraag
+- [Home](https://cafebrakke.nl/): introductie, sfeer, locatie, borrels, voetbal en groepsaanvraag
 - [De kaart](https://cafebrakke.nl/menu.html): volledige menukaart — ontbijt, lunch, burgers, gerechten, snacks & wings, cocktails, bier & wijn, sterke drank, koffie en frisdrank
+
+## English
+
+De site is tweetalig. Elke pagina bestaat in het Nederlands (hoofdtaal) en het Engels; de inhoud is identiek, alleen de taal verschilt.
+
+- [Home (English)](https://cafebrakke.nl/en/): the same homepage in English
+- [Menu (English)](https://cafebrakke.nl/en/menu.html): the same full menu in English
+
+Prijzen staan in beide talen in euro's met een komma als decimaalteken (zoals op de kaart in de zaak).
 
 ## Aanbod in het kort
 

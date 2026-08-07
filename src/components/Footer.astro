@@ -1,27 +1,39 @@
 ---
 // Footer. Styling staat in home.css.
+import type { Lang } from '../i18n';
+import { useCopy } from '../i18n/copy';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = useCopy(lang);
 ---
 <footer>
   <div class="row">
     <div class="crest">Café Brakke<span>.</span></div>
     <div class="footer-col">
-      <h3>Adres</h3>
+      <h3>{c.footer.address}</h3>
       <p>Rozengracht 16<br>1016 NB Amsterdam</p>
     </div>
     <div class="footer-col">
-      <h3>Contact</h3>
+      <h3>{c.footer.contact}</h3>
       <p>
         <a href="tel:+31203201657">020 320 1657</a><br>
         <a href="mailto:hallo@cafebrakke.nl">hallo@cafebrakke.nl</a>
       </p>
     </div>
     <div class="footer-col">
-      <h3>Open</h3>
-      <p>Ma t/m Do, Zo · 09:00&nbsp;tot&nbsp;01:00<br>Vr en Za · 09:00&nbsp;tot&nbsp;03:00</p>
+      <h3>{c.footer.open}</h3>
+      <p set:html={c.footer.hoursHtml} />
     </div>
   </div>
   <div class="colofon">
-    <div>© Café Brakke · Bruin café aan de Rozengracht 16 in de Jordaan</div>
-    <div>Algemene voorwaarden · Privacy · Cookies</div>
+    <div>
+      {c.footer.colofon}<br>
+      <span class="footer-credit">{c.footer.credit} <a href="https://locallevers.com" target="_blank" rel="noopener">Local Levers</a></span>
+    </div>
+    <div>{c.footer.legal}</div>
   </div>
 </footer>

@@ -1,0 +1,40 @@
+---
+/** Eén kolom van de kaart: kopje + items. Markup is 1-op-1 de originele. */
+import { t, type Lang } from '../i18n';
+import type { MenuGroup } from '../i18n/menu-data';
+
+export interface Props {
+  group: MenuGroup;
+  lang: Lang;
+}
+
+const { group, lang } = Astro.props;
+---
+<div class="group">
+  {group.title && (
+    <h3>{t(group.title, lang)}{group.titleNote && <> <span class="price-cols">{t(group.titleNote, lang)}</span></>}</h3>
+  )}
+  {group.compact ? (
+    <div class="compact">
+      {group.items.map((item) => (
+        <div class="item">
+          <div class="item-row">
+            <span class="item-name">{t(item.name, lang)}{item.nameEm && <> <em>{t(item.nameEm, lang)}</em></>}{item.nameNote && <> <span style="opacity:.72;font-weight:400">{t(item.nameNote, lang)}</span></>}</span>
+            <span class="item-price">{item.prices ? item.prices.map((p, i) => <>{i > 0 ? ' ' : ''}<span class="multi">{p}</span></>) : item.price}</span>
+          </div>
+          {item.desc && <p class="item-desc">{t(item.desc, lang)}</p>}
+        </div>
+      ))}
+    </div>
+  ) : (
+    group.items.map((item) => (
+      <div class="item">
+        <div class="item-row">
+          <span class="item-name">{t(item.name, lang)}{item.nameEm && <> <em>{t(item.nameEm, lang)}</em></>}{item.nameNote && <> <span style="opacity:.72;font-weight:400">{t(item.nameNote, lang)}</span></>}</span>
+          <span class="item-price">{item.prices ? item.prices.map((p, i) => <>{i > 0 ? ' ' : ''}<span class="multi">{p}</span></>) : item.price}</span>
+        </div>
+        {item.desc && <p class="item-desc">{t(item.desc, lang)}</p>}
+      </div>
+    ))
+  )}
+</div>

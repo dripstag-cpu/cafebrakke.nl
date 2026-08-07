@@ -1,0 +1,145 @@
+---
+/**
+ * De kaart, taal-onafhankelijk. Categorieën/groepen/items komen uit
+ * `src/i18n/menu-data.ts`; prijzen staan daar één keer en zijn dus per definitie
+ * gelijk in beide talen.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LangSwitch from './LangSwitch.astro';
+import LangBanner from './LangBanner.astro';
+import MenuGroup from './MenuGroup.astro';
+import { absPath, path, t, type Lang } from '../i18n';
+import { useCopy } from '../i18n/copy';
+import { menu } from '../i18n/menu-data';
+import '../styles/menu.css';
+import '../styles/lang.css';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = useCopy(lang);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": c.menuMeta.breadcrumbHome, "item": absPath('home', lang) },
+    { "@type": "ListItem", "position": 2, "name": c.menuMeta.breadcrumbMenu, "item": absPath('menu', lang) }
+  ]
+};
+
+const homeHref = path('home', lang);
+---
+<BaseLayout
+  lang={lang}
+  route="menu"
+  title={c.menuMeta.title}
+  description={c.menuMeta.description}
+  ogType="restaurant.menu"
+  ogTitle={c.menuMeta.ogTitle}
+  ogDescription={c.menuMeta.ogDescription}
+  ogImage="https://cafebrakke.nl/assets/cb2-burger.jpg"
+  jsonLd={jsonLd}
+>
+<LangBanner lang={lang} route="menu" />
+
+<header class="topbar">
+  <a class="back" href={homeHref}>{c.menuPage.back}</a>
+  <a class="brand" href={homeHref}>Café Brakke<span>.</span></a>
+  <div class="topbar-right">
+    <LangSwitch lang={lang} route="menu" />
+    <a class="back" style="text-transform:none;letter-spacing:.04em" href="tel:+31203201657">020 320 1657</a>
+  </div>
+</header>
+
+<section class="menu-hero">
+  <span class="kicker">{c.menuPage.kicker}</span>
+  <h1 set:html={c.menuPage.titleHtml} />
+  <p>{c.menuPage.intro}</p>
+</section>
+
+<nav class="cat-nav" aria-label={c.menuPage.catNavLabel}>
+  <div class="cat-nav-inner">
+    {menu.map((cat) => <a href={`#${cat.id}`}>{t(cat.navLabel, lang)}</a>)}
+  </div>
+</nav>
+
+<main>
+  {menu.map((cat) => (
+    <section class="cat" id={cat.id}>
+      <h2 class="cat-title" set:html={t(cat.titleHtml, lang)} />
+      {cat.note && <p class="cat-note">{t(cat.note, lang)}</p>}
+      {cat.layout === 'grid' ? (
+        <div class="groups-2">
+          {cat.groups.map((group) => <MenuGroup group={group} lang={lang} />)}
+        </div>
+      ) : (
+        cat.groups.map((group) => <MenuGroup group={group} lang={lang} />)
+      )}
+    </section>
+  ))}
+</main>
+
+<section class="menu-foot">
+  <p>{c.menuPage.footLead}</p>
+  <p class="disc">{c.menuPage.footDisc}</p>
+  <div class="foot-cta-row">
+    <a class="primary" href={`${homeHref}#reserveren`}>{c.menuPage.footCtaGroup}</a>
+    <a class="ghost" href="tel:+31203201657">{c.menuPage.footCtaCall}</a>
+    <a class="ghost" href={homeHref}>{c.menuPage.footCtaHome}</a>
+  </div>
+  <p class="foot-credit">{c.footer.credit} <a href="https://locallevers.com" target="_blank" rel="noopener">Local Levers</a></p>
+</section>
+
+<a class="totop" href={`#${menu[0].id}`}>{c.menuPage.toTop}</a>
+
+<script>
+// Meet de hoogte van de sticky balken → exacte aansluiting, geen kier/overlap
+(() => {
+  const root = document.documentElement;
+  const topbar = document.querySelector('.topbar');
+  const catnav = document.querySelector('.cat-nav');
+  const sync = () => {
+    if (topbar) root.style.setProperty('--topbar-h', topbar.offsetHeight + 'px');
+    if (catnav) root.style.setProperty('--catnav-h', catnav.offsetHeight + 'px');
+  };
+  sync();
+  window.addEventListener('resize', sync);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {
+    sync();
+    // Bij binnenkomen op een #anker: opnieuw uitlijnen nadat de hoogtes definitief zijn
+    if (location.hash){
+      const t = document.getElementById(location.hash.slice(1));
+      if (t) t.scrollIntoView();
+    }
+  });
+})();
+
+// Highlight the active category chip while scrolling
+(() => {
+  const links = [...document.querySelectorAll('.cat-nav a')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  // Tap a chip → mark it active immediately (don't wait for the scroll observer)
+  links.forEach(a => a.addEventListener('click', () => {
+    links.forEach(l => l.classList.remove('active'));
+    a.classList.add('active');
+    a.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+  }));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        links.forEach(l => l.classList.remove('active'));
+        const link = map.get(e.target.id);
+        if (link){
+          link.classList.add('active');
+          link.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+        }
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('.cat').forEach(s => obs.observe(s));
+})();
+</script>
+</BaseLayout>

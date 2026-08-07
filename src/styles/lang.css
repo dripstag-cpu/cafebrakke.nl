@@ -1,0 +1,125 @@
+/* ============================================================
+   Taalwissel (NL | EN) + taalbanner.
+   Wordt door zowel de homepage als de menupagina geïmporteerd, want de twee
+   pagina's delen verder geen stylesheet. Kleuren komen uit de :root-variabelen
+   die beide stylesheets al definiëren.
+   ============================================================ */
+
+.lang-switch{
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  line-height:1;
+}
+.lang-switch a{
+  color:var(--paper);
+  text-decoration:none;
+  opacity:.6;
+  /* ≥24px tap-target (WCAG 2.5.8) zonder de balk hoger te maken. */
+  padding:7px 8px;
+  transition:opacity .2s,color .2s;
+}
+.lang-switch a:hover{opacity:1;color:var(--amber)}
+.lang-switch a.active{
+  opacity:1;
+  color:var(--amber);
+  font-weight:500;
+}
+.lang-switch .sep{opacity:.3;color:var(--paper)}
+
+/* Op lichte ondergrond (de menupagina-footer is donker, maar de kaart zelf licht). */
+.lang-switch.on-light a{color:var(--ink)}
+.lang-switch.on-light .sep{color:var(--ink)}
+.lang-switch.on-light a.active{color:var(--amber-dim)}
+
+/* --- Plaatsing: rechtsboven in de hero, vóór de post-nav verschijnt --- */
+.hero-lang{
+  position:absolute;
+  top:18px;
+  right:max(18px, 3vw);
+  z-index:20;
+}
+
+/* --- Plaatsing: in de post-nav (verschijnt na de zoom) --- */
+.post-nav .lang-switch{margin-left:4px}
+
+/* (De plaatsing in de topbar van de menupagina staat in menu.css, bij de topbar zelf.) */
+
+/* ============================================================
+   Taalbanner — verschijnt alleen als de browsertaal duidelijk afwijkt van
+   de paginataal. Overlay (position:fixed) → verschuift niks, dus geen CLS.
+   visibility:hidden i.p.v. alleen transform: anders staat de tekst wél in de
+   toegankelijkheidsboom terwijl hij onzichtbaar buiten beeld hangt.
+   ============================================================ */
+.lang-banner{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:300;
+  background:var(--ink);
+  border-bottom:1px solid rgba(239,233,223,.18);
+  color:var(--paper);
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:.08em;
+  transform:translateY(-100%);
+  visibility:hidden;
+  transition:transform .35s var(--ease-theatrical), visibility .35s;
+}
+.lang-banner.is-visible{
+  transform:translateY(0);
+  visibility:visible;
+}
+.lang-banner-text{
+  margin:0;
+  opacity:.8;
+  text-transform:none;
+  letter-spacing:.04em;
+}
+.lang-banner-cta{
+  background:var(--amber);
+  color:var(--ink);
+  text-decoration:none;
+  padding:8px 14px;
+  min-height:24px;
+  display:inline-flex;
+  align-items:center;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-weight:500;
+  transition:background .2s,color .2s;
+}
+.lang-banner-cta:hover{background:var(--paper);color:var(--ink)}
+.lang-banner-dismiss{
+  background:transparent;
+  border:1px solid rgba(239,233,223,.3);
+  color:var(--paper);
+  font-size:16px;
+  line-height:1;
+  width:28px;
+  height:28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:border-color .2s,color .2s;
+}
+.lang-banner-dismiss:hover{border-color:var(--amber);color:var(--amber)}
+
+@media (max-width:600px){
+  .lang-banner{gap:10px;padding:10px 12px}
+  .lang-banner-text{width:100%;text-align:center}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .lang-banner{transition:none}
+}

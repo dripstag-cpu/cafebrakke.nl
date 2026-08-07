@@ -1,0 +1,32 @@
+---
+import { path, type Lang, type RouteKey } from '../i18n';
+import { useCopy } from '../i18n/copy';
+
+export interface Props {
+  lang: Lang;
+  /** Welke pagina — zodat de switch naar de vertaling van DEZE pagina wijst. */
+  route: RouteKey;
+  /** Extra classes voor plaatsing, bv. "hero-lang" of "on-light". */
+  class?: string;
+}
+
+const { lang, route, class: extra } = Astro.props;
+const c = useCopy(lang);
+---
+<div class:list={['lang-switch', extra]} role="group" aria-label={c.langSwitchLabel}>
+  <a
+    href={path(route, 'nl')}
+    hreflang="nl"
+    lang="nl"
+    class:list={{ active: lang === 'nl' }}
+    aria-current={lang === 'nl' ? 'true' : undefined}
+  >NL</a>
+  <span class="sep" aria-hidden="true">|</span>
+  <a
+    href={path(route, 'en')}
+    hreflang="en"
+    lang="en"
+    class:list={{ active: lang === 'en' }}
+    aria-current={lang === 'en' ? 'true' : undefined}
+  >EN</a>
+</div>

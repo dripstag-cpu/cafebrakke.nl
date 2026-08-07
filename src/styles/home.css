@@ -1503,6 +1503,17 @@ footer .colofon{
   gap:32px;
   flex-wrap:wrap;
 }
+/* Credit / backlink naar de bouwer. Onderstreept i.p.v. alleen kleurverschil,
+   zodat de link ook zonder kleurwaarneming herkenbaar is (WCAG 1.4.1). */
+footer .footer-credit{display:inline-block;margin-top:4px}
+footer .footer-credit a{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:2px;
+  text-decoration-thickness:1px;
+  transition:color .25s,opacity .25s;
+}
+footer .footer-credit a:hover{color:var(--amber);opacity:1}
 
 /* PREFERS-REDUCED-MOTION (WCAG: respect user preference) */
 @media (prefers-reduced-motion: reduce){
@@ -1769,8 +1780,9 @@ footer .colofon{
 .form-note{opacity:.72}
 footer .colofon{opacity:.62}
 /* Tap-targets ≥24px hoog (WCAG 2.5.8): de inline tel/mail-links in de aanvraag-aside
-   en de footer waren maar ~16px hoog. */
-.aanvraag-aside .direct a, footer a[href^="tel:"], footer a[href^="mailto:"]{
+   en de footer waren maar ~16px hoog. Idem de credit-link in het colofon. */
+.aanvraag-aside .direct a, footer a[href^="tel:"], footer a[href^="mailto:"],
+footer .footer-credit a{
   display:inline-block;
   padding:5px 0;
 }

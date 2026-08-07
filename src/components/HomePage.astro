@@ -1,0 +1,701 @@
+---
+/**
+ * De homepage, taal-onafhankelijk. `src/pages/index.astro` (nl) en
+ * `src/pages/en/index.astro` (en) renderen allebei dit component; alle tekst
+ * komt uit `src/i18n/copy.ts`. Zo kan de Engelse versie niet uit de pas lopen
+ * met de Nederlandse.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import LangSwitch from './LangSwitch.astro';
+import LangBanner from './LangBanner.astro';
+import { Image } from 'astro:assets';
+import cb1 from '../assets/cb1-rozengracht.jpg';
+import cb2 from '../assets/cb2-burger.jpg';
+import cb3 from '../assets/cb3-ajax.jpg';
+import cb4 from '../assets/cb4-bedrijfsborrel.jpg';
+import cb5 from '../assets/cb5-terras.jpg';
+import cb6 from '../assets/cb6-bar.jpg';
+import { absPath, path, type Lang } from '../i18n';
+import { useCopy } from '../i18n/copy';
+import '../styles/home.css';
+import '../styles/lang.css';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = useCopy(lang);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["BarOrPub", "Restaurant"],
+  "name": "Café Brakke",
+  "description": c.home.jsonLdDescription,
+  "url": absPath('home', lang),
+  "inLanguage": lang,
+  "telephone": "+31203201657",
+  "email": "hallo@cafebrakke.nl",
+  "image": "https://cafebrakke.nl/assets/cb1-rozengracht.jpg",
+  "priceRange": "€€",
+  "servesCuisine": c.home.servesCuisine,
+  "currenciesAccepted": "EUR",
+  "paymentAccepted": "Pin, Contant, Creditcard",
+  "acceptsReservations": "False",
+  "hasMenu": absPath('menu', lang),
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rozengracht 16",
+    "postalCode": "1016 NB",
+    "addressLocality": "Amsterdam",
+    "addressRegion": "Noord-Holland",
+    "addressCountry": "NL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 52.3738393,
+    "longitude": 4.8799906
+  },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Brakke%20Rozengracht%2016%20Amsterdam",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"],
+      "opens": "09:00",
+      "closes": "01:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "03:00"
+    }
+  ],
+  "areaServed": "Jordaan, Amsterdam",
+  "publicAccess": true
+};
+
+const menuHref = path('menu', lang);
+---
+<BaseLayout
+  lang={lang}
+  route="home"
+  title={c.home.title}
+  description={c.home.description}
+  ogType="business.business"
+  ogTitle={c.home.ogTitle}
+  ogDescription={c.home.ogDescription}
+  ogImage="https://cafebrakke.nl/assets/cb1-rozengracht.jpg"
+  jsonLd={jsonLd}
+>
+  <Fragment slot="head">
+    <!-- Poster is de hero-achtergrond (.hero-poster-bg, CSS-bg → niet LCP-eligible).
+         Het LCP is de hero-tekst (Fraunces) → die fonts krijgen prioriteit; de poster
+         laadt vroeg mee voor de FCP. Sterk gecomprimeerd (±31KB), zit achter een overlay. -->
+    <link rel="preload" as="image" href="/assets/hero-poster.webp" type="image/webp" />
+  </Fragment>
+
+<!-- ============ TAALBANNER ============ -->
+<LangBanner lang={lang} route="home" />
+
+<!-- ============ POST-ZOOM NAVIGATION ============ -->
+<Nav lang={lang} />
+
+<!-- ============ HERO INTRO ============ -->
+<section class="hero-intro">
+  <div class="hero-poster-bg" aria-hidden="true"></div>
+  <video class="hero-video-bg" muted loop playsinline preload="none" aria-hidden="true">
+    <source data-src="/assets/hero.webm" type="video/webm">
+    <source data-src="/assets/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-cinema-overlay" aria-hidden="true"></div>
+  <!-- Taalwissel al zichtbaar in de hero: de post-nav komt pas ná de zoom in beeld. -->
+  <LangSwitch lang={lang} route="home" class="hero-lang" />
+  <div class="hero-intro-content">
+    <span class="kicker">{c.hero.kicker}</span>
+    <h1>Café Brakke<span class="period">.</span></h1>
+    <p class="tagline" set:html={c.hero.taglineHtml} />
+    <div class="hero-cta-row">
+      <a class="hero-cta primary" href="#kaart">{c.hero.ctaMenu}</a>
+      <a class="hero-cta" href="#borrels">{c.hero.ctaBorrels}</a>
+      <a class="hero-cta" href="#voetbal">{c.hero.ctaVoetbal}</a>
+    </div>
+    <div class="scroll-cue">
+      <span class="arrow">↓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZOOM CONTAINER — BOXED ============ -->
+<div class="zoom-wrap">
+<section class="zoom-container" id="zoomContainer">
+  <div class="zoom-sticky">
+
+    <!-- Subtle stage caption (replaces overlay-heavy title) -->
+    <div class="stage-caption" id="heroTitle" aria-hidden="true" style="display:none"></div>
+
+    <!-- 6 image slots — start as editorial grid -->
+    <div class="image-stage">
+      <a class="slot rozengracht" href="#locatie" data-key="rozengracht">
+        <div class="frame">
+          <Image src={cb1} alt={c.slots.rozengracht.alt} widths={[768, 1200, 1584]} sizes="100vw" loading="lazy" quality={66} />
+        </div>
+        <span class="label"><span class="index">01</span>{c.slots.rozengracht.label}</span>
+      </a>
+      <a class="slot burger" href={menuHref} data-key="burger">
+        <div class="frame">
+          <Image src={cb2} alt={c.slots.burger.alt} widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
+        </div>
+        <span class="label"><span class="index">02</span>{c.slots.burger.label}</span>
+      </a>
+      <a class="slot ajax" href="#voetbal" data-key="ajax">
+        <div class="frame">
+          <Image src={cb3} alt={c.slots.ajax.alt} widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
+        </div>
+        <span class="label"><span class="index">03</span>{c.slots.ajax.label}</span>
+      </a>
+      <a class="slot borrel" href="#borrels" data-key="borrel">
+        <div class="frame">
+          <Image src={cb4} alt={c.slots.borrel.alt} widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
+        </div>
+        <span class="label"><span class="index">04</span>{c.slots.borrel.label}</span>
+      </a>
+      <a class="slot terras" href="#locatie" data-key="terras">
+        <div class="frame">
+          <Image src={cb5} alt={c.slots.terras.alt} widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
+        </div>
+        <span class="label"><span class="index">05</span>{c.slots.terras.label}</span>
+      </a>
+      <a class="slot vedett" href={menuHref} data-key="vedett">
+        <div class="frame">
+          <Image src={cb6} alt={c.slots.vedett.alt} widths={[240, 400, 640]} sizes="(max-width: 768px) 40vw, 320px" loading="lazy" quality={56} />
+        </div>
+        <span class="label"><span class="index">06</span>{c.slots.vedett.label}</span>
+      </a>
+    </div>
+
+    <!-- Decorative house number (appears mid-zoom) -->
+    <div class="house-number" id="houseNumber">16</div>
+
+    <!-- Soft veil at zoom-end -->
+    <div class="veil" id="veil"></div>
+
+    <!-- Caption on the final fullscreen Rozengracht image -->
+    <div class="box-caption" id="boxCaption">
+      <span class="tag">{c.boxCaption.tag}</span>
+      <h2 set:html={c.boxCaption.titleHtml} />
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- ============ OVER ONS · Achter de bar + reviews ============ -->
+<section class="section-2" id="over">
+  <div class="pullquote-block">
+    <div class="left">
+      <div class="label">{c.over.label}</div>
+      <div class="pullquote">
+        {c.over.pullquoteLead}<span class="lift" set:html={c.over.pullquoteLiftHtml} />
+      </div>
+    </div>
+    <div class="right">
+      <p>{c.over.p1}</p>
+      <p set:html={c.over.p2Html} />
+      <p>{c.over.p3}</p>
+    </div>
+  </div>
+  <div class="roster">
+    <span class="label">{c.over.rosterLabel}</span>
+    <span class="name">Albart</span><span class="sep">·</span>
+    <span class="name">Samuel</span><span class="sep">·</span>
+    <span class="name">Percy</span><span class="sep">·</span>
+    <span class="name">Mario</span><span class="sep">·</span>
+    <span class="name">Ella</span><span class="sep">·</span>
+    <span class="name">Francesca</span>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews-section">
+  <div class="reviews-inner">
+    <div class="reviews-head">
+      <span class="kicker">{c.reviews.kicker}</span>
+      <h2 set:html={c.reviews.titleHtml} />
+      <p class="strap">{c.reviews.strap}</p>
+    </div>
+    <div class="reviews-grid">
+      {c.reviews.items.map((r) => (
+        <figure class="review">
+          <blockquote>{r.quote}</blockquote>
+          <figcaption><span class="name">{r.name}</span><span class="meta">{r.meta}</span></figcaption>
+        </figure>
+      ))}
+    </div>
+    <div class="reviews-cta">
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Caf%C3%A9%20Brakke%20Rozengracht%2016%20Amsterdam" target="_blank" rel="noopener" class="cta">{c.reviews.cta}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HAPJE & DRANKJE (kaart preview) ============ -->
+<section class="over-section" id="kaart">
+  <div class="kaart-block">
+    <div class="kaart-head">
+      <span class="kicker">{c.kaart.kicker}</span>
+      <h2 set:html={c.kaart.titleHtml} />
+      <p class="strap">{c.kaart.strap}</p>
+    </div>
+    <div class="kaart-cols">
+      <div class="kaart-col">
+        <h3>{c.kaart.colKitchen}</h3>
+        <ul class="kaart-list">
+          <li><span>{c.kaart.kitchenItems[0]}</span><span class="dots"></span><span>€ 13,90</span></li>
+          <li><span>{c.kaart.kitchenItems[1]}</span><span class="dots"></span><span>€ 18,50</span></li>
+          <li><span>{c.kaart.kitchenItems[2]}</span><span class="dots"></span><span>€ 20,90</span></li>
+          <li><span>{c.kaart.kitchenItems[3]}</span><span class="dots"></span><span>€ 19,90</span></li>
+          <li><span>{c.kaart.kitchenItems[4]}</span><span class="dots"></span><span>€ 18,50</span></li>
+          <li><span>{c.kaart.kitchenItems[5]}</span><span class="dots"></span><span>€ 7,50</span></li>
+        </ul>
+      </div>
+      <div class="kaart-col">
+        <h3>{c.kaart.colBar}</h3>
+        <ul class="kaart-list">
+          <li><span>{c.kaart.barItems[0]}</span><span class="dots"></span><span>€ 4,00</span></li>
+          <li><span>{c.kaart.barItems[1]}</span><span class="dots"></span><span>€ 6,75</span></li>
+          <li><span>{c.kaart.barItems[2]}</span><span class="dots"></span><span>€ 6,75</span></li>
+          <li><span>{c.kaart.barItems[3]}</span><span class="dots"></span><span>€ 5,75</span></li>
+          <li><span>{c.kaart.barItems[4]}</span><span class="dots"></span><span>€ 14,50</span></li>
+          <li><span>{c.kaart.barItems[5]}</span><span class="dots"></span><span>€ 3,25</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="kaart-foot">{c.kaart.foot}</p>
+    <div class="kaart-cta-row">
+      <a class="cta" href={menuHref}>{c.kaart.cta}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BORRELS & BEDRIJFSBORRELS ============ -->
+<section class="borrels-section" id="borrels">
+  <div class="borrels-inner">
+    <div class="borrels-head">
+      <span class="kicker">{c.borrels.kicker}</span>
+      <h2 set:html={c.borrels.titleHtml} />
+      <p class="strap">{c.borrels.strap}</p>
+    </div>
+    <div class="borrels-cards">
+      <article class="borrel-card">
+        <div class="borrel-card-head">
+          <span class="num">A</span>
+          <h3>{c.borrels.cardA.title}</h3>
+        </div>
+        <p class="price" set:html={c.borrels.cardA.priceHtml} />
+        <p>{c.borrels.cardA.body}</p>
+        <ul class="extras">
+          {c.borrels.cardA.extras.map((x) => <li>{x}</li>)}
+        </ul>
+      </article>
+      <article class="borrel-card">
+        <div class="borrel-card-head">
+          <span class="num">B</span>
+          <h3>{c.borrels.cardB.title}</h3>
+        </div>
+        <p class="price" set:html={c.borrels.cardB.priceHtml} />
+        <p>{c.borrels.cardB.body}</p>
+        <ul class="extras">
+          {c.borrels.cardB.extras.map((x) => <li>{x}</li>)}
+        </ul>
+      </article>
+    </div>
+    <div class="borrels-foot">
+      <p>{c.borrels.foot}</p>
+      <div class="borrels-cta-row">
+        <a class="cta primary" href="#reserveren">{c.borrels.ctaPrimary}</a>
+        <a class="cta" href="tel:+31203201657">{c.borrels.ctaCall}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AJAX & WEDSTRIJDEN ============ -->
+<section class="voetbal-section" id="voetbal">
+  <div class="voetbal-inner">
+    <div class="voetbal-head">
+      <span class="kicker">{c.voetbal.kicker}</span>
+      <h2 set:html={c.voetbal.titleHtml} />
+      <p class="strap">{c.voetbal.strap}</p>
+    </div>
+    <div class="voetbal-grid">
+      <div class="voetbal-text">
+        <p>{c.voetbal.p1}</p>
+        <p>{c.voetbal.p2}</p>
+      </div>
+      <div class="voetbal-agenda">
+        <h3>{c.voetbal.agendaTitle}</h3>
+        <ul>
+          {c.voetbal.agenda.map((a) => (
+            <li><span class="match">{a.match}</span><span class="time">{a.time}</span></li>
+          ))}
+        </ul>
+        <p class="agenda-meta">{c.voetbal.agendaMeta}</p>
+      </div>
+    </div>
+    <div class="voetbal-cta-row">
+      <a class="cta primary" href="#reserveren">{c.voetbal.ctaPrimary}</a>
+      <a class="cta" href="tel:+31203201657">{c.voetbal.ctaCall}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OVER ONS · Het pand ============ -->
+<section class="over-section" id="locatie">
+  <div class="section-3">
+    <div class="map-block">
+      <div class="figure">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2705.516282983623!2d4.879990579682747!3d52.37383926802996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609db35f5711f%3A0xd75fabb47ff25c4f!2sCaf%C3%A9%20Brakke!5e0!3m2!1sen!2snl!4v1780309135961!5m2!1sen!2snl"
+          width="100%"
+          height="100%"
+          style="border:0;position:absolute;inset:0;width:100%;height:100%;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title={c.locatie.mapTitle}></iframe>
+      </div>
+    </div>
+    <div class="text-block">
+      <span class="kicker">{c.locatie.kicker}</span>
+      <h2 set:html={c.locatie.titleHtml} />
+      <p>{c.locatie.p1}</p>
+      <p>{c.locatie.p2}</p>
+      <div class="facts">
+        {c.locatie.facts.map((f) => (
+          <div class="row"><span class="key">{f.key}</span>{f.value}</div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AANVRAAG / RESERVEREN ============ -->
+
+<section class="aanvraag-section" id="reserveren">
+  <div class="aanvraag-inner">
+    <div class="aanvraag-head">
+      <span class="kicker">{c.aanvraag.kicker}</span>
+      <h2 set:html={c.aanvraag.titleHtml} />
+      <p class="strap">{c.aanvraag.strap}</p>
+    </div>
+    <div class="aanvraag-grid">
+      <form
+        class="aanvraag-form"
+        id="aanvraagForm"
+        novalidate
+        data-mail-labels={JSON.stringify(c.aanvraag.mail)}
+      >
+        <div class="field-row">
+          <div class="field">
+            <label for="f-naam">{c.aanvraag.name}</label>
+            <input id="f-naam" name="naam" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-tel">{c.aanvraag.phone}</label>
+            <input id="f-tel" name="telefoon" type="tel" autocomplete="tel">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-mail">{c.aanvraag.email}</label>
+          <input id="f-mail" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-type">{c.aanvraag.occasion}</label>
+            <select id="f-type" name="gelegenheid">
+              {c.aanvraag.occasions.map((o) => <option>{o}</option>)}
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-aantal">{c.aanvraag.people}</label>
+            <input id="f-aantal" name="aantal" type="number" min="2" inputmode="numeric" placeholder={c.aanvraag.peoplePlaceholder}>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-datum">{c.aanvraag.date}</label>
+          <input id="f-datum" name="datum" type="date">
+        </div>
+        <div class="field">
+          <label for="f-bericht">{c.aanvraag.message}</label>
+          <textarea id="f-bericht" name="bericht" placeholder={c.aanvraag.messagePlaceholder}></textarea>
+        </div>
+        <button class="form-submit" type="submit">{c.aanvraag.submit}</button>
+        <p class="form-note">{c.aanvraag.note}</p>
+      </form>
+      <aside class="aanvraag-aside">
+        <h3>{c.aanvraag.asideTitle}</h3>
+        <p>{c.aanvraag.asideP1}</p>
+        <p>{c.aanvraag.asideP2}</p>
+        <div class="direct">
+          <a href="tel:+31203201657">020 320 1657</a><br>
+          <a href="mailto:hallo@cafebrakke.nl">hallo@cafebrakke.nl</a><br>
+          {c.aanvraag.asideAddress}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ CTA ============ -->
+<section class="cta-section">
+  <span class="kicker">{c.cta.kicker}</span>
+  <h2 set:html={c.cta.titleHtml} />
+  <div class="cta-row">
+    <a class="cta primary" href={menuHref}>{c.cta.menu}</a>
+    <a class="cta" href="#reserveren">{c.cta.borrels}</a>
+    <a class="cta" href="#voetbal">{c.cta.voetbal}</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<Footer lang={lang} />
+
+<script>
+// Aanvraagformulier → opent de mailclient met alles vooringevuld (geen backend nodig).
+// Later live met een echt endpoint? Zet action/method op het <form> en vervang deze handler.
+// De veldnamen in de mail komen uit data-mail-labels, zodat een Engelse aanvraag
+// ook Engelse labels krijgt.
+(() => {
+  const form = document.getElementById('aanvraagForm');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const v = (n) => (form.elements[n]?.value || '').trim();
+    let L;
+    try { L = JSON.parse(form.dataset.mailLabels); } catch { return; }
+    const body =
+      `${L.name}: ${v('naam')}\n` +
+      `${L.phone}: ${v('telefoon') || '—'}\n` +
+      `${L.email}: ${v('email')}\n` +
+      `${L.occasion}: ${v('gelegenheid')}\n` +
+      `${L.count}: ${v('aantal') || '—'}\n` +
+      `${L.date}: ${v('datum') || '—'}\n\n` +
+      `${L.message}:\n${v('bericht') || '—'}\n`;
+    const subject = `${L.subject} — ${v('gelegenheid')}${v('aantal') ? ' (' + v('aantal') + ' ' + L.people + ')' : ''}`;
+    window.location.href =
+      `mailto:hallo@cafebrakke.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+})();
+
+// Hero-video lazy laden: de poster toont direct, de video laadt pas ná de eerste
+// render (window 'load'). Op desktop. Op mobiel NIET: daar zou de full-screen video
+// (die laat binnenkomt) het LCP-element worden → trage LCP. Mobiel houdt de statische,
+// donkere poster (.hero-poster-bg). Ook overslaan bij reduced-motion en data-besparing/2G.
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;                       // bij reduced-motion: poster laten staan, geen video
+  if (window.matchMedia('(max-width: 768px)').matches) return;  // mobiel: poster only (LCP-vriendelijk)
+  const start = () => {
+    const v = document.querySelector('.hero-video-bg');
+    if (!v) return;
+    const conn = navigator.connection;
+    const saveData = !!conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ''));
+    if (saveData) return;                   // alleen bij databesparing/2G: enkel de poster
+    const sources = [...v.querySelectorAll('source[data-src]')];
+    if (!sources.length || sources[0].src) return;   // al geladen
+    // kies één afspeelbaar formaat en verwijder de rest → geen dubbele download
+    const pick = sources.find((s) => v.canPlayType(s.type) === 'probably')
+      || sources.find((s) => v.canPlayType(s.type)) || sources[0];
+    sources.forEach((s) => { if (s !== pick) s.remove(); });
+    pick.src = pick.dataset.src;
+    v.load();
+    v.play().catch(() => {});
+  };
+  if (document.readyState === 'complete') setTimeout(start, 200);
+  else window.addEventListener('load', () => setTimeout(start, 200));
+})();
+
+(() => {
+  const container = document.getElementById('zoomContainer');
+  const heroTitle = document.getElementById('heroTitle');
+  const boxCaption = document.getElementById('boxCaption');
+  const veil = document.getElementById('veil');
+  const houseNumber = document.getElementById('houseNumber');
+  const postNav = document.getElementById('postNav');
+
+  const slots = {
+    rozengracht: document.querySelector('.slot.rozengracht'),
+    burger: document.querySelector('.slot.burger'),
+    ajax: document.querySelector('.slot.ajax'),
+    borrel: document.querySelector('.slot.borrel'),
+    terras: document.querySelector('.slot.terras'),
+    vedett: document.querySelector('.slot.vedett'),
+  };
+  const labels = document.querySelectorAll('.slot .label');
+
+  // Easing
+  const easeInOutCubic = t => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+  const easeOutQuart = t => 1 - Math.pow(1-t,4);
+
+  // Respect prefers-reduced-motion — skip the scroll-driven animations entirely
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion){
+    boxCaption.style.opacity = 1;
+    boxCaption.style.transform = 'translateY(0)';
+    veil.style.opacity = 0;
+    // Pause the hero background video — no autoplay if user prefers less motion
+    const heroVideo = document.querySelector('.hero-video-bg');
+    if (heroVideo){ heroVideo.pause(); heroVideo.removeAttribute('autoplay'); }
+    return;
+  }
+
+  let ticking = false;
+  let lastProgress = -1;
+
+  // Layout-metingen cachen i.p.v. elke frame uitlezen → geen forced reflow / lange taken.
+  let containerTop = 0;
+  let total = 1;
+  const rozImg = slots.rozengracht.querySelector('img');
+  function measure(){
+    const r = container.getBoundingClientRect();
+    containerTop = r.top + window.scrollY;
+    total = Math.max(1, container.offsetHeight - window.innerHeight);
+  }
+
+  function update(){
+    let raw = Math.max(0, Math.min(1, (window.scrollY - containerTop) / total));
+    if (Math.abs(raw - lastProgress) < 0.001) return;
+    lastProgress = raw;
+
+    const e = easeInOutCubic(raw);
+    const eq = easeOutQuart(raw);
+
+    // ---- IMAGE TRANSFORMS — zoom ends with ONLY Rozengracht 16 visible ----
+    // Rozengracht (center) — scales up to fill the sticky stage
+    const rozScale = 1 + e * 2.1;      // ends ~3.1x — fills full-width sticky
+    const rozTy = e * 22;              // re-center toward stage middle
+    slots.rozengracht.style.transform = `translate(0%, ${rozTy}%) scale(${rozScale})`;
+    slots.rozengracht.style.zIndex = 5;
+
+    // Other 5 images: scale + translate far off-stage, then fade to 0
+    const burScale = 1 + e * 5;
+    slots.burger.style.transform = `translate(${e * -85}%, ${e * 40}%) scale(${burScale})`;
+
+    const ajxScale = 1 + e * 5;
+    slots.ajax.style.transform = `translate(${e * 85}%, ${e * 40}%) scale(${ajxScale})`;
+
+    const borScale = 1 + e * 6;
+    slots.borrel.style.transform = `translate(${e * -120}%, ${e * -50}%) scale(${borScale})`;
+
+    const terScale = 1 + e * 7;
+    slots.terras.style.transform = `translate(0%, ${e * -110}%) scale(${terScale})`;
+
+    const vedScale = 1 + e * 6;
+    slots.vedett.style.transform = `translate(${e * 120}%, ${e * -50}%) scale(${vedScale})`;
+
+    // ---- OTHER IMAGES FADE OUT at end (so only Rozengracht 16 remains) ----
+    const fadeOthers = Math.max(0, 1 - Math.max(0, (raw - 0.7) / 0.18));
+    ['burger','ajax','borrel','terras','vedett'].forEach(k => {
+      slots[k].style.opacity = fadeOthers;
+    });
+
+    // ---- LABEL FADE ----
+    const labelOp = Math.max(0, 1 - raw / 0.22);
+    labels.forEach(l => l.style.opacity = labelOp);
+
+    // ---- STAGE CAPTION FADE ----
+    const titleOp = Math.max(0, 1 - raw / 0.25);
+    heroTitle.style.opacity = titleOp;
+
+    // ---- HOUSE NUMBER 16 — appears mid-zoom, fades before fullscreen ----
+    if (raw > 0.32 && raw < 0.72){
+      houseNumber.classList.add('show');
+    } else {
+      houseNumber.classList.remove('show');
+    }
+
+    // ---- ROZENGRACHT IMAGE FILTER — cinematic ramp ----
+    if (rozImg){
+      const sat = 0.88 + e * 0.20;      // .88 → 1.08
+      const con = 1.05 + e * 0.10;      // 1.05 → 1.15
+      const bright = 0.98 + e * 0.05;   // .98 → 1.03
+      rozImg.style.filter = `saturate(${sat}) contrast(${con}) brightness(${bright})`;
+    }
+
+    // ---- VEIL + BOX CAPTION ----
+    const overP = Math.max(0, (raw - 0.68) / 0.3);
+    veil.style.opacity = overP;
+    boxCaption.style.opacity = overP;
+    boxCaption.style.transform = `translateY(${(1 - overP) * 20}px)`;
+
+    // ---- POST-ZOOM NAV — show after zoom completes ----
+    if (raw >= 0.95){
+      postNav.classList.add('show');
+    } else if (raw < 0.85){
+      postNav.classList.remove('show');
+    }
+  }
+
+  function tick(){
+    if (!ticking){
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', tick, {passive:true});
+  window.addEventListener('resize', () => { measure(); tick(); });
+  // (Geen her-meting op fonts.ready meer: de Fraunces-fallback is metric-compatibel,
+  //  dus de swap verschuift de layout niet. Die reflow vuurde laat — op het moment dat
+  //  het font binnen was — en zette de LCP-timing onnodig laat.)
+  // measure() leest getBoundingClientRect (forced reflow). In een rAF ná de eerste paint
+  //  i.p.v. tijdens script-eval → geen lange main-thread taak op het kritieke pad.
+  requestAnimationFrame(() => { measure(); update(); });
+
+  // Reveal sections on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {threshold: 0.12});
+
+  document.querySelectorAll('.over-section, .section-2').forEach(s => {
+    s.style.opacity = 0;
+    s.style.transform = 'translateY(40px)';
+    s.style.transition = 'opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1)';
+    revealObserver.observe(s);
+  });
+
+  // Mobile menu toggle. De aria-labels staan als data-attribuut op de knop zodat
+  // ze meevertalen.
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  if (navToggle && navMenu){
+    const openLabel = navToggle.dataset.labelOpen || 'Open menu';
+    const closeLabel = navToggle.dataset.labelClose || 'Close menu';
+    navToggle.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? closeLabel : openLabel);
+    });
+    navMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', openLabel);
+      });
+    });
+  }
+})();
+</script>
+</BaseLayout>
